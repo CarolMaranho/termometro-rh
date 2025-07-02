@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termômetro do RH - Avalie a maturidade da sua área de Recursos Humanos</title>
+    <meta name="description" content="Ferramenta gratuita para avaliar o nível de maturidade do seu RH em 7 dimensões estratégicas. Descubra se seu RH é Operacional, Estratégico ou Inovador!">
+    <meta name="keywords" content="RH, recursos humanos, maturidade rh, termometro rh, gestão de pessoas, rh estratégico">
+    <meta name="author" content="Termômetro do RH">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seusite.com/">
+    <meta property="og:title" content="Termômetro do RH - Avalie sua área de Recursos Humanos">
+    <meta property="og:description" content="Ferramenta gratuita para avaliar o nível de maturidade do seu RH em 7 dimensões estratégicas.">
+    <meta property="og:image" content="https://seusite.com/thumbnail.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://seusite.com/">
+    <meta property="twitter:title" content="Termômetro do RH - Avalie sua área de Recursos Humanos">
+    <meta property="twitter:description" content="Ferramenta gratuita para avaliar o nível de maturidade do seu RH em 7 dimensões estratégicas.">
+    <meta property="twitter:image" content="https://seusite.com/thumbnail.jpg">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌡️</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --hibernacao: #3498db;
+            --aquecendo: #f1c40f;
+            --nucleo: #e67e22;
+            --solar: #e74c3c;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--hibernacao), var(--aquecendo), var(--nucleo), var(--solar));
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cta-button.primary {
+            background: linear-gradient(to right, var(--secondary), #2980b9);
+            color: white;
+        }
+        
+        .cta-button.secondary {
+            background-color: white;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .instructions {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .instructions h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .scale-item {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 0.8rem;
+            margin: 0.3rem;
+            border-radius: 8px;
+            background-color: var(--light);
+            font-weight: 500;
+            border: 1px solid #ddd;
+        }
+        
+        .scale-item:nth-child(1) { background-color: #ffe8e6; border-color: #ffcdd2; }
+        .scale-item:nth-child(2) { background-color: #fff3e0; border-color: #ffe0b2; }
+        .scale-item:nth-child(3) { background-color: #fffde7; border-color: #fff59d; }
+        .scale-item:nth-child(4) { background-color: #e8f5e9; border-color: #c8e6c9; }
+        .scale-item:nth-child(5) { background-color: #e3f2fd; border-color: #bbdefb; }
+        
+        .dimension-container {
+            margin-bottom: 2rem;
+        }
+        
+        .dimension-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .dimension-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .dimension-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dimension-content {
+            padding: 1.5rem;
+        }
+        
+        .statement {
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .statement:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .statement-text {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        .rating-options {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .rating-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .rating-option:hover .rating-circle {
+            transform: scale(1.1);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .rating-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            border: 2px solid #ddd;
+            transition: all 0.2s;
+        }
+        
+        .rating-option.selected .rating-circle {
+            border-color: var(--secondary);
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .rating-label {
+            font-size: 0.85rem;
+            text-align: center;
+            color: #666;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--secondary), #2980b9);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .level-card {
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .level-card.hibernacao {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+        }
+        
+        .level-card.aquecendo {
+            background: linear-gradient(135deg, #f1c40f, #e67e22);
+        }
+        
+        .level-card.nucleo {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+        
+        .level-card.solar {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .level-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .level-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .chart-wrapper {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .results-table th, .results-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .results-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .results-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .results-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .radar-chart-container {
+            height: 400px;
+            position: relative;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f2f5;
+            color: #4b4f56;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .share-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .testimonials {
+            display: flex;
+            gap: 20px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .testimonial {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .rating-options {
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .rating-option {
+                width: 50px;
+            }
+            
+            .rating-circle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .charts-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🌡️</div>
+            <h1>Termômetro do RH</h1>
+            <p class="subtitle">Avalie gratuitamente o nível de maturidade do seu RH em 7 dimensões estratégicas e descubra como evoluir!</p>
+            
+            <div class="cta-buttons">
+                <button class="cta-button primary" onclick="document.getElementById('evaluation-container').scrollIntoView({behavior: 'smooth'})">
+                    <span>Comece Agora</span>
+                </button>
+                <button class="cta-button secondary" onclick="document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'})">
+                    <span>Como Funciona</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="how-it-works" class="instructions">
+            <h2>Como utilizar o Termômetro do RH</h2>
+            <p>Avalie o nível de maturidade do seu RH em 7 dimensões estratégicas. Para cada afirmação, selecione o nível que melhor representa a realidade da sua organização:</p>
+            
+            <div class="rating-scale">
+                <div class="scale-item">0 = Não Fazemos / Não temos planos</div>
+                <div class="scale-item">1 = Estamos planejando / Discutindo</div>
+                <div class="scale-item">2 = Fazemos parcialmente / Em implementação</div>
+                <div class="scale-item">3 = Fazemos consistentemente, mas com oportunidades de melhoria</div>
+                <div class="scale-item">4 = Prática consolidada e eficaz</div>
+            </div>
+            
+            <p>Ao final, você receberá um diagnóstico completo com gráficos e recomendações para evoluir seu RH!</p>
+        </section>
+        
+        <div id="evaluation-container">
+            <!-- Dimensões serão inseridas aqui via JavaScript -->
+        </div>
+        
+        <div class="buttons">
+            <button id="calculate-btn" class="btn btn-primary">Calcular Resultado</button>
+            <button id="reset-btn" class="btn btn-secondary">Reiniciar Avaliação</button>
+        </div>
+        
+        <div id="result-container" class="result-container">
+            <div class="result-header">
+                <h2 class="result-title">Resultado da Avaliação</h2>
+                <p class="result-subtitle">Índice de Maturidade Global do RH - IMG</p>
+            </div>
+            
+            <div id="level-card" class="level-card">
+                <h3 class="level-title" id="level-icon">🔥 RH Núcleo</h3>
+                <p class="level-description" id="level-description">Meu RH já teve a fase de "testes" superada, e as iniciativas são mais consistentes, com foco na melhoria contínua e na busca por uma atuação mais estratégica.</p>
+            </div>
+            
+            <div class="charts-container">
+                <div class="chart-wrapper">
+                    <h3 class="chart-title">Radar Evolutivo</h3>
+                    <div class="radar-chart-container">
+                        <canvas id="radar-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-wrapper">
+                    <h3 class="chart-title">Índice de Maturidade</h3>
+                    <div style="height: 300px;">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="chart-title">Resultados Detalhados</h3>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Dimensão</th>
+                        <th>Pontuação Total</th>
+                        <th>Média</th>
+                        <th>Nível</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                    <!-- Resultados serão inseridos aqui -->
+                </tbody>
+            </table>
+            
+            <div class="share-section">
+                <h3>Gostou da ferramenta? Compartilhe com outros profissionais de RH!</h3>
+                <div class="social-share">
+                    <a href="#" class="social-button" title="Compartilhar no LinkedIn">in</a>
+                    <a href="#" class="social-button" title="Compartilhar no Facebook">f</a>
+                    <a href="#" class="social-button" title="Compartilhar no Twitter">t</a>
+                    <a href="#" class="social-button" title="Compartilhar por E-mail">✉️</a>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button id="back-btn" class="btn btn-secondary">Voltar para Avaliação</button>
+                <button id="export-btn" class="btn btn-primary">Exportar Resultados</button>
+            </div>
+        </div>
+        
+        <div class="testimonials">
+            <div class="testimonial">
+                <div class="testimonial-content">"O Termômetro do RH nos ajudou a identificar pontos críticos para evolução. Uma ferramenta essencial para RHs que querem se tornar estratégicos!"</div>
+                <div class="testimonial-author">Ana Paula, Gerente de RH</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">"Simples, objetivo e muito útil. Conseguimos priorizar nossas ações com base no diagnóstico gerado pela ferramenta."</div>
+                <div class="testimonial-author">Carlos Eduardo, Diretor de Pessoas</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>Termômetro do RH - Ferramenta gratuita para avaliação de maturidade em Recursos Humanos</p>
+        <p>Baseado em dados confiáveis e tendências globais | Desenvolvido para transformar RHs em parceiros estratégicos</p>
+        <p>© 2025 Termômetro do RH - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Dados das dimensões e afirmações
+        const dimensions = [
+            {
+                name: "Cultura & Valores",
+                icon: "🏛️",
+                statements: [
+                    "...revisito, documento e comunico os valores organizacionais de forma acessível, incorporando-os nos processos de RH (recrutamento, onboarding, avaliação de desempenho, etc.).",
+                    "...crio mecanismos (rituais, treinamentos, práticas de feedback) que incentivam segurança psicológica e aprendizado contínuo nas equipes.",
+                    "...monitoro e adapto continuamente meus processos para refletirem os valores e a cultura desejada, com base em dados e percepções internas.",
+                    "...estruturei e executo um onboarding cultural que apresenta de forma prática os valores e rituais da organização, com indicadores de efetividade acompanhados."
+                ]
+            },
+            {
+                name: "Liderança & Influência",
+                icon: "👑",
+                statements: [
+                    "...tenho papel ativo na construção das competências de liderança, com programas estruturados e acompanhamento prático dos resultados.",
+                    "...influencio decisões estratégicas participando regularmente de fóruns executivos e comitês de gestão.",
+                    "...apoio os líderes com ferramentas, dados e treinamentos contínuos para tomada de decisão baseada em pessoas.",
+                    "...construo planos de sucessão e desenvolvimento junto às lideranças e acompanho indicadores de maturidade de liderança."
+                ]
+            },
+            {
+                name: "Jornada & EX",
+                icon: "🛣️",
+                statements: [
+                    "...mapeei as etapas da jornada do colaborador (desde o pré-boarding ao desligamento) e reviso periodicamente com base em feedbacks e dados.",
+                    "...meço a experiência do colaborador em momentos-chave da jornada (admissão, avaliação, desligamento, transições internas, etc.) de forma estruturada.",
+                    "...aplico melhorias contínuas na jornada com base em dados e escuta ativa.",
+                    "...atuo em parceria com a Comunicação para garantir o desdobramento claro e efetivo das estratégias, resultados e iniciativas, empoderando as lideranças em todos os níveis."
+                ]
+            },
+            {
+                name: "Clima & Pertencimento",
+                icon: "❤️",
+                statements: [
+                    "...aplico pesquisas de clima ou pulso de forma estruturada, analiso resultados e gero planos de ação com os líderes.",
+                    "...mantenho canais de escuta ativa (ex: rodas de conversa, surveys, conversas individuais) e transformo feedbacks em melhorias.",
+                    "...promovo ações de reconhecimento que valorizam comportamentos alinhados à cultura e aos resultados.",
+                    "...lidero iniciativas que fortalecem o sentimento de pertencimento, incluindo ações práticas voltadas à diversidade, equidade, inclusão (DE&I) e conexão entre áreas."
+                ]
+            },
+            {
+                name: "IA & Data Driven",
+                icon: "🤖",
+                statements: [
+                    "...priorizo o mapeamento (road map) e a estruturação dos processos antes de implementar soluções de digitalização e IA, garantindo assertividade no investimento e utilização das tecnologias.",
+                    "...estou capacitando regularmente a equipe para o uso de IA e de ferramentas digitais (Ex.: seleção, treinamento, DP, people analytics, etc.).",
+                    "...conduzo a transformação digital de forma integrada, garantindo que as soluções de IA e tecnologia adotadas estejam conectadas entre si, alinhadas à cultura organizacional e ao propósito estratégico do negócio.",
+                    "...já identifiquei (ou estou ativamente mapeando) as funções na empresa que demandarão reskilling ou upskilling devido à incorporação de novas tecnologias e/ou IA, atuando de forma preventiva."
+                ]
+            },
+            {
+                name: "Analytics",
+                icon: "📊",
+                statements: [
+                    "...monitoro os principais indicadores de gestão de pessoas (turnover, absenteísmo, eNPS, retenção, etc.) e os discuto estrategicamente com as lideranças.",
+                    "...realizo análises cruzadas de dados (quantitativos e qualitativos) e os traduzo em insights estratégicos para o negócio.",
+                    "...utilizo dashboards ou relatórios (People Analytics) para embasar decisões e priorizações estratégicas em gestão de pessoas.",
+                    "...mantenho histórico e base estruturada de dados de pessoas, com atualização periódica e padronização, garantindo confiabilidade para minhas análises."
+                ]
+            },
+            {
+                name: "Governança & Custos",
+                icon: "💰",
+                statements: [
+                    "...garanto que todos os processos do Depto Pessoal (admissão, folha, férias, rescisões, obrigações legais) sejam cumpridos com alto grau de compliance, mínima reincidência de erros e atendimento humanizado.",
+                    "...tenho um processo estruturado e transparente para revisão e comunicação de remuneração e benefícios, contribuindo para a atração, retenção e motivação de talentos.",
+                    "...realizo análises de mercado e benchmarking para garantir que as práticas de remuneração e benefícios sejam competitivas, equitativas e alinhadas à estratégia da organização.",
+                    "...participo ativamente da elaboração e acompanhamento do orçamento de pessoas (payroll/labor budget), apoiando outras áreas na gestão eficiente desses recursos."
+                ]
+            }
+        ];
+
+        // Variáveis globais
+        let scores = {};
+        let radarChart, barChart;
+
+        // Inicializar a aplicação
+        document.addEventListener('DOMContentLoaded', function() {
+            renderDimensions();
+            setupEventListeners();
+        });
+
+        // Renderizar as dimensões e afirmações
+        function renderDimensions() {
+            const container = document.getElementById('evaluation-container');
+            container.innerHTML = '';
+            
+            dimensions.forEach((dimension, dimIndex) => {
+                const dimHTML = `
+                    <div class="dimension-container">
+                        <div class="dimension-card">
+                            <div class="dimension-header">
+                                ${dimension.icon} ${dimension.name}
+                            </div>
+                            <div class="dimension-content">
+                                ${dimension.statements.map((statement, stIndex) => `
+                                    <div class="statement" data-dim="${dimIndex}" data-stmt="${stIndex}">
+                                        <p class="statement-text">${statement}</p>
+                                        <div class="rating-options">
+                                            ${[0, 1, 2, 3, 4].map(score => `
+                                                <div class="rating-option" data-score="${score}">
+                                                    <div class="rating-circle">${score}</div>
+                                                    <div class="rating-label">${getScoreLabel(score)}</div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.innerHTML += dimHTML;
+            });
+            
+            // Adicionar eventos aos botões de pontuação
+            document.querySelectorAll('.rating-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const statement = this.closest('.statement');
+                    const dimIndex = statement.dataset.dim;
+                    const stmtIndex = statement.dataset.stmt;
+                    const score = this.dataset.score;
+                    
+                    // Remover seleção anterior
+                    statement.querySelectorAll('.rating-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Adicionar nova seleção
+                    this.classList.add('selected');
+                    
+                    // Salvar pontuação
+                    if (!scores[dimIndex]) scores[dimIndex] = {};
+                    scores[dimIndex][stmtIndex] = parseInt(score);
+                });
+            });
+        }
+
+        // Obter rótulo para a pontuação
+        function getScoreLabel(score) {
+            const labels = [
+                "Não Faz",
+                "Planejando",
+                "Parcial",
+                "Consistente",
+                "Consolidado"
+            ];
+            return labels[score];
+        }
+
+        // Configurar eventos
+        function setupEventListeners() {
+            document.getElementById('calculate-btn').addEventListener('click', calculateResults);
+            document.getElementById('reset-btn').addEventListener('click', resetEvaluation);
+            document.getElementById('back-btn').addEventListener('click', showEvaluation);
+            document.getElementById('export-btn').addEventListener('click', exportPDF);
+        }
+
+        // Calcular resultados
+        function calculateResults() {
+            const results = {
+                dimensions: [],
+                totalScore: 0,
+                averageScore: 0,
+                level: ''
+            };
+            
+            // Verificar se todas as afirmações foram avaliadas
+            let allAnswered = true;
+            
+            dimensions.forEach((dimension, dimIndex) => {
+                if (!scores[dimIndex] || Object.keys(scores[dimIndex]).length < dimension.statements.length) {
+                    allAnswered = false;
+                }
+            });
+            
+            if (!allAnswered) {
+                alert('Por favor, avalie todas as afirmações antes de calcular o resultado.');
+                return;
+            }
+            
+            // Calcular pontuações por dimensão
+            dimensions.forEach((dimension, dimIndex) => {
+                const dimScores = Object.values(scores[dimIndex]);
+                const total = dimScores.reduce((sum, score) => sum + score, 0);
+                const average = total / dimension.statements.length;
+                
+                results.dimensions.push({
+                    name: dimension.name,
+                    total: total,
+                    average: average
+                });
+                
+                results.totalScore += total;
+            });
+            
+            // Calcular média global
+            results.averageScore = results.totalScore / dimensions.length;
+            
+            // Determinar nível de maturidade
+            const maxScore = dimensions.length * 4 * 4; // 7 dimensões * 4 afirmações * 4 pontos máx
+            const percentage = (results.totalScore / maxScore) * 100;
+            
+            let levelClass = "";
+            
+            if (percentage <= 32) {
+                results.level = {
+                    name: "RH Hibernação",
+                    description: "Meu RH está focado em cumprir as obrigações legais e operacionais básicas, atuando de forma reativa às demandas diárias. Há uma ausência significativa de planejamento estratégico e integração com os objetivos de negócio.",
+                    icon: "🥶"
+                };
+                levelClass = "hibernacao";
+            } else if (percentage <= 65) {
+                results.level = {
+                    name: "Aqueça-se RH",
+                    description: "Meu RH tem iniciativas isoladas e em planejamento. No entanto, o processo ainda carece de consistência e metodologia. Este é o RH que 'quer', mas ainda não tem clareza 'como' ou 'por onde' começar a transformação de forma sistemática.",
+                    icon: "🌱"
+                };
+                levelClass = "aquecendo";
+            } else if (percentage <= 89) {
+                results.level = {
+                    name: "RH Núcleo",
+                    description: "Meu RH já teve a fase de 'testes' superada, e as iniciativas são mais consistentes, com foco na melhoria contínua e na busca por uma atuação mais estratégica. Há um entendimento mais profundo sobre o uso de dados, cultura e liderança.",
+                    icon: "🔥"
+                };
+                levelClass = "nucleo";
+            } else {
+                results.level = {
+                    name: "RH Solar",
+                    description: "Meu RH atua como um parceiro do business proativo. É procurado e participa ativamente na definição das estratégias da manutenção e crescimento do negócio utilizando dados, tecnologia e uma cultura robusta para impactar diretamente os resultados da empresa.",
+                    icon: "☀️"
+                };
+                levelClass = "solar";
+            }
+            
+            // Atualizar classe do card de nível
+            const levelCard = document.getElementById('level-card');
+            levelCard.className = `level-card ${levelClass}`;
+            
+            // Exibir resultados
+            displayResults(results);
+        }
+
+        // Exibir resultados
+        function displayResults(results) {
+            // Atualizar informações do nível
+            document.getElementById('level-icon').innerHTML = `${results.level.icon} ${results.level.name}`;
+            document.getElementById('level-description').textContent = results.level.description;
+            
+            // Atualizar tabela de resultados
+            const resultsBody = document.getElementById('results-body');
+            resultsBody.innerHTML = '';
+            
+            results.dimensions.forEach(dim => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${dim.name}</td>
+                    <td>${dim.total}</td>
+                    <td>${dim.average.toFixed(2)}</td>
+                    <td>${getMaturityLevel(dim.average)}</td>
+                `;
+                resultsBody.appendChild(row);
+            });
+            
+            // Adicionar linha de total
+            const totalRow = document.createElement('tr');
+            totalRow.style.fontWeight = 'bold';
+            totalRow.style.backgroundColor = '#f0f7ff';
+            totalRow.innerHTML = `
+                <td>TOTAL</td>
+                <td>${results.totalScore}</td>
+                <td>${results.averageScore.toFixed(2)}</td>
+                <td>${results.level.name}</td>
+            `;
+            resultsBody.appendChild(totalRow);
+            
+            // Criar gráficos
+            createCharts(results);
+            
+            // Mostrar seção de resultados
+            document.getElementById('evaluation-container').style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+            document.getElementById('result-container').style.display = 'block';
+            
+            // Rolar para os resultados
+            document.getElementById('result-container').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Obter nível de maturidade para uma dimensão
+        function getMaturityLevel(average) {
+            if (average < 1.5) return "Inicial";
+            if (average < 2.5) return "Emergente";
+            if (average < 3.5) return "Consolidando";
+            return "Avançado";
+        }
+
+        // Criar gráficos
+        function createCharts(results) {
+            // Destruir gráficos anteriores se existirem
+            if (radarChart) radarChart.destroy();
+            if (barChart) barChart.destroy();
+            
+            const ctxRadar = document.getElementById('radar-chart').getContext('2d');
+            const ctxBar = document.getElementById('bar-chart').getContext('2d');
+            
+            // Dados para o gráfico de radar
+            const dimNames = results.dimensions.map(dim => dim.name);
+            const dimAverages = results.dimensions.map(dim => dim.average);
+            
+            radarChart = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: dimNames,
+                    datasets: [{
+                        label: 'Maturidade',
+                        data: dimAverages,
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(52, 152, 219, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(52, 152, 219, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 4,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw.toFixed(2)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Dados para o gráfico de barras
+            const levelColors = {
+                "RH Hibernação": 'rgba(52, 152, 219, 0.7)',
+                "Aqueça-se RH": 'rgba(241, 196, 15, 0.7)',
+                "RH Núcleo": 'rgba(230, 126, 34, 0.7)',
+                "RH Solar": 'rgba(231, 76, 60, 0.7)'
+            };
+            
+            barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Maturidade Global'],
+                    datasets: [{
+                        label: results.level.name,
+                        data: [results.averageScore],
+                        backgroundColor: levelColors[results.level.name],
+                        borderColor: levelColors[results.level.name].replace('0.7', '1'),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 4
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Média: ${context.raw.toFixed(2)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Reiniciar avaliação
+        function resetEvaluation() {
+            scores = {};
+            document.querySelectorAll('.rating-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            alert('Avaliação reiniciada com sucesso!');
+        }
+
+        // Voltar para a avaliação
+        function showEvaluation() {
+            document.getElementById('evaluation-container').style.display = 'block';
+            document.querySelector('.buttons').style.display = 'flex';
+            document.getElementById('result-container').style.display = 'none';
+            
+            // Rolar para o topo da avaliação
+            document.getElementById('evaluation-container').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Exportar PDF (simulação)
+        function exportPDF() {
+            alert('Os resultados foram preparados para download. Em breve você receberá um e-mail com o relatório completo!');
+        }
+    </script>
+</body>
+</html>
