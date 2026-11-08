@@ -171,6 +171,10 @@
 
         /* Evite e reflexão lado a lado */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+        .grid-2.exemplos { margin-top: 0; }
+        .exemplos .box { background: var(--surface-2); }
+        .exemplos .ctx { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 4px; }
+        .exemplos p { font-size: .9rem; margin: 0; }
         .box { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--surface); }
         .box h4 { margin-top: 0; }
         .marks { list-style: none; padding: 0 !important; }
@@ -487,7 +491,7 @@
             id: 'avaliacao',
             emoji: '📊',
             titulo: 'Avaliação de desempenho',
-            tags: ['avaliacao', 'avaliacao de desempenho', 'ciclo de avaliacao', 'calibracao', 'nota', 'nine box', '9 box', 'ninebox', 'performance review', 'meta', 'metas', 'okr', 'kpi'],
+            tags: ['avaliacao', 'avaliacao de desempenho', 'ciclo de avaliacao', 'calibracao', 'nota', 'nine box', '9 box', 'ninebox', 'performance review', 'meta', 'metas', 'okr'],
             resumo: 'A avaliação formal deve confirmar o que já foi conversado ao longo do ano. Por isso, o acompanhamento ao longo do ano é o que torna essa conversa tranquila e sem surpresas.',
             passos: [
                 'Reúna evidências do período todo (entregas, feedbacks, 1:1s), não só dos últimos 2 meses.',
@@ -596,7 +600,7 @@
             id: 'delegacao',
             emoji: '🎯',
             titulo: 'Delegação e sobrecarga do líder',
-            tags: ['delegar', 'delegacao', 'centralizar', 'centralizador', 'microgerenciamento', 'microgerenciar', 'nao confio', 'faco tudo', 'sem tempo', 'agenda lotada', 'autonomia', 'priorizar', 'prioridade'],
+            tags: ['delegar', 'delegacao', 'centralizar', 'centralizador', 'microgerenciamento', 'microgerenciar', 'nao confio', 'faco tudo', 'autonomia', 'distribuir tarefas'],
             resumo: 'Delegar bem libera tempo para o que é estratégico e desenvolve o time. É transferir responsabilidade com clareza, não só repassar tarefas.',
             passos: [
                 'Liste o que só você pode fazer. O resto é candidato a ser delegado.',
@@ -951,6 +955,283 @@
             ],
             mentor: 'A IA amplia a capacidade do líder quando assume tarefas operacionais e libera tempo para o que é essencialmente humano: escutar, desenvolver e decidir com responsabilidade. O diferencial está no critério de uso. Para refletir: que tarefa você poderia apoiar com IA esta semana, e como usaria o tempo ganho com o seu time?',
             relacionados: ['delegacao', 'custos', 'one-on-one']
+        },
+        {
+            id: 'gestao-rotina',
+            emoji: '🗂️',
+            titulo: 'Gestão da rotina e priorização',
+            tags: ['rotina', 'rotinas', 'gestao da rotina', 'gestao de rotina', 'priorizar', 'priorizacao', 'prioridade', 'prioridades', 'urgente', 'importante', 'sem tempo', 'agenda lotada', 'agenda', 'organizar', 'organizacao', 'planejamento', 'planejar a semana', 'ritual', 'rituais', 'reuniao diaria', 'daily', 'inicio de turno', 'passagem de turno', 'apagar incendio', 'incendios', 'produtividade pessoal'],
+            resumo: 'Uma rotina bem estruturada dá previsibilidade ao time e libera o líder para o que é importante. Priorizar é decidir conscientemente o que fazer primeiro, o que delegar e o que não fazer.',
+            extra: `
+                <h4>Matriz urgente x importante</h4>
+                <ul>
+                    <li><strong>Urgente e importante:</strong> faça agora (falhas críticas, prazos legais, riscos de segurança).</li>
+                    <li><strong>Importante, não urgente:</strong> agende e proteja na agenda (planejamento, desenvolvimento do time, melhorias). É onde está o maior ganho.</li>
+                    <li><strong>Urgente, não importante:</strong> delegue (demandas operacionais que outra pessoa pode resolver).</li>
+                    <li><strong>Nem urgente nem importante:</strong> elimine ou reduza.</li>
+                </ul>
+                <h4>Rituais que estruturam a rotina</h4>
+                <ul>
+                    <li><strong>Diário (10 a 15 min):</strong> início de turno ou do dia, com prioridades, riscos e pendências.</li>
+                    <li><strong>Semanal (30 a 60 min):</strong> indicadores, prioridades da semana e 1:1s.</li>
+                    <li><strong>Mensal:</strong> resultados, planos de ação e planejamento do próximo mês.</li>
+                </ul>`,
+            exemplos: [
+                ['Operação · supervisor de turno', 'Início de turno com 10 minutos de alinhamento: segurança, metas do turno, pendências do turno anterior e quem cobre o quê. No fim, 5 minutos para registrar o que fica para o próximo turno.'],
+                ['Administrativo · coordenador financeiro', 'Na semana de fechamento, o coordenador bloqueia a agenda para as conciliações críticas, define com o time a ordem das entregas (impostos, folha, fornecedores) e adia as reuniões que podem esperar.']
+            ],
+            passos: [
+                'Liste as atividades da sua semana, inclusive as recorrentes.',
+                'Classifique cada uma na matriz urgente x importante.',
+                'Defina no máximo 3 prioridades da semana e compartilhe com o time.',
+                'Crie rituais fixos (diário, semanal e mensal) com pauta curta e combinados registrados.',
+                'Bloqueie na agenda tempo para o que é importante e não urgente.',
+                'No fim da semana, revise o que avançou e ajuste as prioridades da próxima.'
+            ],
+            roteiro: '"Pessoal, esta semana temos três prioridades: fechar o inventário até quinta, zerar as pendências de faturamento e treinar os dois novos colegas. Qualquer nova demanda, vamos avaliar juntos se ela ajuda nessas três frentes antes de assumir."',
+            evitar: [
+                'Passar o dia apagando incêndios sem tratar a causa que os gera.',
+                'Reuniões sem pauta, sem horário para terminar e sem combinados.',
+                'Assumir todas as demandas que chegam, sem negociar prazo ou prioridade.',
+                'Mudar as prioridades com frequência sem comunicar o time.'
+            ],
+            perguntas: [
+                'Quanto do meu tempo esta semana foi para o importante e quanto para o urgente?',
+                'Que ritual fixo traria mais previsibilidade para o meu time?',
+                'O que eu posso delegar ou deixar de fazer?'
+            ],
+            mentor: 'A rotina é a estrutura que sustenta os resultados. Quando o time conhece as prioridades e os rituais, as decisões ficam mais rápidas e o líder ganha tempo para pensar no futuro. Para refletir: que ritual simples, mantido toda semana, traria mais previsibilidade para a sua área?',
+            relacionados: ['indicadores', 'delegacao', 'one-on-one']
+        },
+        {
+            id: 'indicadores',
+            emoji: '📈',
+            titulo: 'Indicadores e gestão por dados',
+            tags: ['indicador', 'indicadores', 'kpi', 'kpis', 'metrica', 'metricas', 'dados', 'data driven', 'orientado a dados', 'dashboard', 'painel', 'gestao a vista', 'quadro de gestao', 'analise de causa', 'causa raiz', '5 porques', 'cinco porques', 'ishikawa', 'pdca', 'plano de acao', 'tendencia', 'preditivo', 'preventivo', 'desvio', 'resultado da area'],
+            resumo: 'Ser orientado a dados é acompanhar os indicadores da área, entender as causas dos desvios, agir para corrigir e usar as informações para antecipar problemas. Indicador compartilhado com o time vira compromisso coletivo.',
+            extra: `
+                <h4>O ciclo da gestão por dados</h4>
+                <ol class="steps">
+                    <li><strong>Acompanhar:</strong> poucos indicadores, com meta, frequência definida e olhar para a tendência.</li>
+                    <li><strong>Analisar a causa:</strong> antes de agir, pergunte "por quê?" até chegar à causa raiz (5 porquês) ou organize as causas por método, máquina, mão de obra, material, medida e meio ambiente (Ishikawa).</li>
+                    <li><strong>Agir:</strong> plano de ação com o quê, quem e até quando, e verificação do efeito.</li>
+                    <li><strong>Antecipar:</strong> acompanhe indicadores de tendência, que mostram o problema antes de ele virar resultado.</li>
+                    <li><strong>Compartilhar:</strong> mostre os números ao time, explique o impacto de cada um e celebre os avanços.</li>
+                </ol>
+                <h4>Resultado x tendência</h4>
+                <ul>
+                    <li><strong>Indicador de resultado:</strong> mostra o que já aconteceu. Ex.: produtividade do mês, despesa realizada.</li>
+                    <li><strong>Indicador de tendência:</strong> sinaliza o que pode acontecer. Ex.: absenteísmo subindo, backlog crescendo, notas pendentes acumulando.</li>
+                </ul>`,
+            exemplos: [
+                ['Operação · supervisor de turno', 'A produtividade caiu 8% em duas semanas. Com os 5 porquês: mais paradas → a empilhadeira 3 para com frequência → a manutenção preventiva está atrasada → não há janela na escala. Ação: janela fixa de manutenção. Indicador de tendência: horas de parada por equipamento.'],
+                ['Administrativo · coordenador financeiro', 'O prazo de pagamento a fornecedores aumentou. A análise por etapa mostra que as notas chegam atrasadas das áreas. Ação: prazo de envio combinado e alerta semanal. Indicador de tendência: notas pendentes de lançamento toda sexta-feira.']
+            ],
+            passos: [
+                'Defina de 3 a 5 indicadores-chave da área, cada um com meta clara.',
+                'Estabeleça a frequência de acompanhamento (diária, semanal ou mensal).',
+                'Olhe a tendência das últimas semanas, não só o número do período.',
+                'Diante de um desvio, analise a causa raiz antes de definir a ação.',
+                'Registre o plano de ação com responsável e prazo, e verifique o resultado.',
+                'Compartilhe os indicadores com o time em um quadro ou reunião curta.'
+            ],
+            roteiro: '"Nosso índice de retrabalho subiu de 3% para 5% este mês. Quero entender com vocês onde os erros se concentram e por quê. Vamos definir juntos duas ações para as próximas duas semanas e acompanhar o efeito no quadro toda segunda."',
+            evitar: [
+                'Acompanhar indicadores demais e perder o foco.',
+                'Agir sobre o sintoma sem analisar a causa.',
+                'Usar o indicador para procurar culpados em vez de soluções.',
+                'Olhar os números só no fechamento do mês.',
+                'Ter indicadores que o time não conhece ou não entende.'
+            ],
+            perguntas: [
+                'Quais são os 3 indicadores que melhor mostram a saúde da minha área?',
+                'Que sinal de tendência me ajudaria a agir antes do problema?',
+                'Meu time sabe como o seu trabalho impacta esses números?'
+            ],
+            mentor: 'Dados transformam opinião em decisão. O líder que acompanha os indicadores com o time ganha capacidade de antecipar problemas, priorizar com clareza e mostrar resultados com credibilidade. Para refletir: que indicador, acompanhado toda semana com o time, faria mais diferença no seu resultado?',
+            relacionados: ['gestao-rotina', 'custos', 'apresentacoes']
+        },
+        {
+            id: 'cliente',
+            emoji: '🛎️',
+            titulo: 'Foco no cliente',
+            tags: ['cliente', 'clientes', 'foco no cliente', 'cliente interno', 'cliente externo', 'reclamacao', 'reclamacoes', 'reclamou', 'reclamando', 'cliente reclamou', 'cliente insatisfeito', 'nps', 'satisfacao do cliente', 'atendimento', 'atendimento ao cliente', 'sla', 'experiencia do cliente', 'prazo de entrega', 'entrega no prazo', 'qualidade da entrega'],
+            resumo: 'Todo trabalho tem um cliente: o externo, que compra o serviço, ou o interno, a área que recebe a sua entrega. Foco no cliente é entender o que ele precisa, cumprir o combinado e agir rápido quando algo sai do esperado.',
+            extra: `
+                <h4>Três pilares</h4>
+                <ul>
+                    <li><strong>Entender a necessidade:</strong> o que o cliente valoriza (prazo, qualidade, comunicação, custo).</li>
+                    <li><strong>Cumprir o combinado:</strong> entregar no prazo e no padrão, e avisar antes quando algo mudar.</li>
+                    <li><strong>Recuperar bem uma falha:</strong> assumir, informar, resolver e aprender com a causa.</li>
+                </ul>
+                <h4>Indicadores comuns</h4>
+                <ul>
+                    <li>Cumprimento de prazo ou SLA, reclamações, satisfação (NPS ou pesquisa) e retrabalho.</li>
+                </ul>`,
+            exemplos: [
+                ['Operação · supervisor de turno', 'Um caminhão vai atrasar por um problema na carga. O supervisor avisa o cliente antes do horário combinado, informa a nova previsão e o que está sendo feito. Depois, registra a causa para evitar que se repita.'],
+                ['Administrativo · coordenador financeiro', 'Para o financeiro, as outras áreas são clientes internos. O coordenador define um prazo claro de resposta para reembolsos e um canal único para dúvidas, reduzindo cobranças e retrabalho.']
+            ],
+            passos: [
+                'Identifique os clientes externos e internos da sua área.',
+                'Converse com eles para entender o que mais valorizam.',
+                'Traduza essas expectativas em indicadores (prazo, qualidade, resposta).',
+                'Comunique antes de o problema chegar ao cliente.',
+                'Trate cada reclamação como oportunidade: registre, responda, analise a causa.',
+                'Compartilhe com o time os elogios e as reclamações recebidos.'
+            ],
+            roteiro: '"Recebemos um elogio do cliente pela agilidade da semana passada e também uma reclamação sobre um prazo. Quero compartilhar os dois com vocês: o que fizemos bem, para repetir, e o que podemos ajustar para não acontecer de novo."',
+            evitar: [
+                'Prometer ao cliente o que não depende de você.',
+                'Esperar o cliente reclamar para avisar sobre um atraso.',
+                'Tratar a área interna como um cliente menos importante.',
+                'Responder a uma reclamação de forma defensiva.'
+            ],
+            perguntas: [
+                'Quem são os clientes, internos e externos, do trabalho da minha área?',
+                'O que eles mais valorizam na nossa entrega?',
+                'Como o meu time recebe o retorno dos clientes?'
+            ],
+            mentor: 'A experiência do cliente é construída nos detalhes do dia a dia: um prazo cumprido, um aviso antecipado, uma resposta clara. Quando o time entende para quem trabalha, a qualidade melhora de forma natural. Para refletir: que pequena mudança faria seu cliente perceber mais cuidado na entrega da sua área?',
+            relacionados: ['indicadores', 'relacionamento', 'gestao-rotina']
+        },
+        {
+            id: 'inteligencia-emocional',
+            emoji: '🧘',
+            titulo: 'Inteligência emocional',
+            tags: ['inteligencia emocional', 'controle emocional', 'equilibrio emocional', 'autocontrole', 'autoconhecimento', 'perdi a paciencia', 'perder a paciencia', 'paciencia', 'explodi', 'irritado', 'irritada', 'irritacao', 'raiva', 'nervoso', 'nervosa', 'pressao', 'sob pressao', 'reagir', 'reacao', 'gatilho', 'empatia', 'calma'],
+            resumo: 'Inteligência emocional é perceber e gerir as próprias emoções e compreender as dos outros. Para o líder, ela sustenta decisões equilibradas, conversas produtivas e um ambiente de confiança, especialmente sob pressão.',
+            extra: `
+                <h4>Quatro competências</h4>
+                <ul>
+                    <li><strong>Autoconsciência:</strong> reconhecer o que você sente e o que provoca essas reações.</li>
+                    <li><strong>Autogestão:</strong> escolher a resposta, em vez de agir por impulso.</li>
+                    <li><strong>Empatia:</strong> perceber o que o outro sente e o contexto em que está.</li>
+                    <li><strong>Gestão de relacionamentos:</strong> usar essa leitura para comunicar, engajar e resolver conflitos.</li>
+                </ul>
+                <h4>Técnica da pausa</h4>
+                <p>Antes de responder em um momento tenso: <strong>pare</strong>, <strong>respire</strong>, <strong>nomeie</strong> a emoção ("estou frustrado com o atraso") e <strong>escolha</strong> a resposta mais útil para a situação.</p>`,
+            exemplos: [
+                ['Operação · supervisor de turno', 'Uma falha de equipamento atrasa o turno e a pressão pela meta aumenta. Antes de falar com o time, o supervisor faz uma pausa, organiza as prioridades e comunica com calma: o que aconteceu, qual é o plano e o que precisa de cada um.'],
+                ['Administrativo · coordenador financeiro', 'Em reunião, um diretor questiona um número do relatório. O coordenador evita responder na defensiva: reconhece a dúvida, explica o que já sabe e se compromete a trazer a análise detalhada até o fim do dia.']
+            ],
+            passos: [
+                'Identifique as situações que costumam gerar reações mais intensas em você.',
+                'Pratique a técnica da pausa antes de responder.',
+                'Escute para entender antes de responder, especialmente em discordâncias.',
+                'Se as emoções estiverem altas, combine um novo horário para a conversa, sem deixar de fazê-la.',
+                'Cuide da sua energia: pausas, sono e limites ajudam no equilíbrio.',
+                'Peça feedback a pessoas de confiança sobre como você reage sob pressão.'
+            ],
+            roteiro: '"Percebo que essa situação está deixando todo mundo tenso, inclusive eu. Vamos fazer uma pausa de cinco minutos, organizar as ideias e voltar com um plano claro."',
+            evitar: [
+                'Tomar decisões importantes no calor do momento.',
+                'Levar a frustração de uma situação para a equipe.',
+                'Ignorar sinais de tensão no time.',
+                'Confundir firmeza com rispidez.'
+            ],
+            perguntas: [
+                'Em quais situações eu reajo de forma mais intensa?',
+                'O que me ajuda a recuperar o equilíbrio rapidamente?',
+                'Como o time percebe a minha postura em momentos de pressão?'
+            ],
+            mentor: 'Equilíbrio emocional é uma das competências que mais geram confiança em um líder. Em momentos de pressão, o time observa a reação de quem lidera e tende a acompanhá-la. Para refletir: que prática simples ajudaria você a responder, e não apenas reagir, nas situações mais desafiadoras?',
+            relacionados: ['relacionamento', 'conflito', 'saude-mental']
+        },
+        {
+            id: 'relacionamento',
+            emoji: '🔗',
+            titulo: 'Relacionamento interpessoal',
+            tags: ['relacionamento', 'relacionamento interpessoal', 'interpessoal', 'pares', 'outras areas', 'outra area', 'area parceira', 'areas parceiras', 'stakeholder', 'stakeholders', 'networking', 'influencia', 'influenciar', 'colaboracao', 'parceria', 'meu chefe', 'meu gestor', 'minha gestora', 'gestor imediato', 'gestao para cima', 'alinhamento entre areas', 'comunicacao'],
+            resumo: 'Boa parte dos resultados depende de pessoas que não estão no seu time: pares, outras áreas, o seu gestor. Construir relações de confiança facilita alinhamentos, acelera decisões e reduz conflitos.',
+            extra: `
+                <h4>Quatro direções do relacionamento</h4>
+                <ul>
+                    <li><strong>Com o time:</strong> presença, clareza e coerência.</li>
+                    <li><strong>Com pares e outras áreas:</strong> alinhar expectativas e prazos e resolver divergências diretamente.</li>
+                    <li><strong>Com o gestor:</strong> informar cedo, trazer opções junto com os problemas e combinar prioridades.</li>
+                    <li><strong>Com clientes e parceiros:</strong> confiança construída entrega a entrega.</li>
+                </ul>
+                <h4>Princípios</h4>
+                <ul>
+                    <li>Confiança se constrói com consistência: fazer o que diz.</li>
+                    <li>Escute para entender o ponto de vista do outro.</li>
+                    <li>Invista na relação antes de precisar dela.</li>
+                </ul>`,
+            exemplos: [
+                ['Operação · supervisor de turno', 'O supervisor tem atritos frequentes com a manutenção. Ele propõe um alinhamento de 15 minutos toda segunda para combinar as prioridades dos equipamentos. Em poucas semanas, as paradas não planejadas diminuem.'],
+                ['Administrativo · coordenador financeiro', 'O coordenador precisa dos dados das áreas para o orçamento. Em vez de cobrar por e-mail, ele explica o porquê, combina os prazos com cada gestor e devolve uma visão consolidada útil para todos.']
+            ],
+            passos: [
+                'Mapeie as relações mais importantes para o resultado da sua área.',
+                'Marque conversas periódicas com pares e áreas parceiras, não só quando há problema.',
+                'Alinhe expectativas: o que cada um precisa do outro, em que prazo e em que formato.',
+                'Com o seu gestor, combine prioridades e a forma preferida de receber informações.',
+                'Resolva divergências diretamente, com respeito e foco no objetivo comum.',
+                'Reconheça publicamente a ajuda de outras áreas.'
+            ],
+            roteiro: '"Quero entender melhor como o nosso trabalho impacta a sua área. O que facilitaria a sua rotina na nossa entrega? E o que você precisa saber de nós com mais antecedência?"',
+            evitar: [
+                'Procurar outras áreas só quando há um problema.',
+                'Resolver divergências por e-mail com cópia para os superiores.',
+                'Comentar sobre colegas sem que eles estejam presentes.',
+                'Deixar o gestor saber de uma notícia importante por outra pessoa.'
+            ],
+            perguntas: [
+                'Quais relações são mais importantes para o resultado da minha área?',
+                'Com quem eu preciso fortalecer a parceria nos próximos meses?',
+                'O meu gestor recebe de mim as informações no tempo certo?'
+            ],
+            mentor: 'Relacionamentos de confiança funcionam como uma rede de apoio para os resultados. Quanto mais o líder investe nessas conexões no dia a dia, mais fáceis se tornam os alinhamentos nos momentos críticos. Para refletir: com qual pessoa ou área uma conversa esta semana poderia fortalecer a parceria?',
+            relacionados: ['inteligencia-emocional', 'conflito', 'cliente']
+        },
+        {
+            id: 'apresentacoes',
+            emoji: '📑',
+            titulo: 'Apresentações e reportes',
+            tags: ['apresentacao', 'apresentacoes', 'apresentar', 'reporte', 'reportes', 'reportar', 'report', 'relatorio', 'relatorios', 'status report', 'reuniao de resultados', 'resultado para a diretoria', 'diretoria', 'board', 'comite', 'slides', 'slide', 'ppt', 'powerpoint', 'one page', 'storytelling', 'resumo executivo', 'falar em publico'],
+            resumo: 'Um bom reporte leva a mensagem certa para a pessoa certa e facilita decisões. Com a liderança, a regra é começar pela conclusão, sustentar com dados e deixar claro o que se espera de quem está ouvindo.',
+            extra: `
+                <h4>Estrutura em 4 partes</h4>
+                <ol class="steps">
+                    <li><strong>Mensagem principal:</strong> a conclusão em uma frase, logo no início.</li>
+                    <li><strong>Dados que sustentam:</strong> poucos números, comparados com a meta e o período anterior.</li>
+                    <li><strong>Causas e ações:</strong> o que explica o resultado e o que está sendo feito, com responsável e prazo.</li>
+                    <li><strong>O que você precisa:</strong> decisão, apoio ou recurso que espera da liderança.</li>
+                </ol>
+                <h4>Boas práticas</h4>
+                <ul>
+                    <li>Um slide, uma mensagem. O título afirma a conclusão ("Produtividade 5% acima da meta").</li>
+                    <li>Gráficos simples, com destaque no que importa.</li>
+                    <li>Detalhes vão para o anexo.</li>
+                    <li>Traga resultados ruins com a mesma transparência dos bons, sempre com proposta.</li>
+                </ul>`,
+            exemplos: [
+                ['Operação · supervisor de turno', 'Reporte semanal em uma página: "Batemos 96% da meta de produção. A diferença veio de 2 horas de parada na linha 2, por falta de peça. Ação: estoque mínimo da peça. Preciso de aprovação para a compra antecipada."'],
+                ['Administrativo · coordenador financeiro', 'No comitê mensal, o coordenador abre com: "Fechamos o mês 3% acima do orçado em despesas, puxados por fretes. Proposta: renegociar dois contratos até o próximo mês." Os detalhes por conta ficam no anexo.']
+            ],
+            passos: [
+                'Defina o objetivo do reporte e quem vai assistir.',
+                'Escreva a mensagem principal em uma frase.',
+                'Selecione os poucos dados que sustentam essa mensagem.',
+                'Explique causas e ações, com responsável e prazo.',
+                'Termine com o pedido claro: decisão, apoio ou recurso.',
+                'Ensaie e prepare respostas para as perguntas mais difíceis.'
+            ],
+            roteiro: '"Em resumo: estamos 5% acima da meta de produtividade, mas o absenteísmo subiu e pode afetar o próximo mês. Já iniciamos duas ações. O que preciso hoje é a aprovação para reforçar a escala nas próximas quatro semanas."',
+            evitar: [
+                'Começar pelo contexto e deixar a conclusão para o final.',
+                'Slides com excesso de texto e números.',
+                'Apresentar um problema sem proposta de solução.',
+                'Não saber explicar de onde vêm os dados.'
+            ],
+            perguntas: [
+                'Qual é a única mensagem que a liderança precisa levar desta apresentação?',
+                'Que decisão ou apoio eu preciso ao final?',
+                'Que perguntas difíceis podem surgir e como vou respondê-las?'
+            ],
+            mentor: 'Comunicar resultados com clareza é uma forma de liderar também para cima. Um reporte objetivo, com fatos, causas e propostas, constrói credibilidade e acelera decisões. Para refletir: como você resumiria em uma frase o momento atual da sua área?',
+            relacionados: ['indicadores', 'custos', 'relacionamento']
         }
     ];
 
@@ -1150,7 +1431,8 @@
         { titulo: 'Conversas e feedback', temas: ['feedback', 'one-on-one', 'conflito', 'mudanca', 'desligamento'] },
         { titulo: 'Desempenho e desenvolvimento', temas: ['baixa-performance', 'avaliacao', 'pdi', 'sucessao', 'reconhecimento'] },
         { titulo: 'Time e bem-estar', temas: ['engajamento', 'retencao', 'saude-mental', 'diversidade'] },
-        { titulo: 'Gestão e rotinas', temas: ['rotinas-pessoal', 'custos', 'delegacao', 'remuneracao', 'ia'] },
+        { titulo: 'Gestão e resultados', temas: ['gestao-rotina', 'indicadores', 'cliente', 'custos', 'rotinas-pessoal', 'delegacao', 'remuneracao'] },
+        { titulo: 'Competências do líder', temas: ['inteligencia-emocional', 'relacionamento', 'apresentacoes', 'ia'] },
         { titulo: 'Contratação e integração', temas: ['contratacao', 'onboarding'] }
     ];
     const categoriaDe = id => CATEGORIAS.find(c => c.temas.includes(id));
@@ -1177,6 +1459,7 @@
             <h3>${t.emoji} ${t.titulo}</h3>
             <p class="lead">${t.resumo}</p>
             ${t.extra || ''}
+            ${t.exemplos ? `<h4>Exemplos práticos</h4><div class="grid-2 exemplos">${t.exemplos.map(e => `<div class="box"><span class="ctx">${e[0]}</span><p>${e[1]}</p></div>`).join('')}</div>` : ''}
             <h4>Passo a passo</h4>
             <ol class="steps">${t.passos.map(p => `<li>${p}</li>`).join('')}</ol>
             <h4>Como falar</h4>
@@ -1224,7 +1507,7 @@
                 <div><span class="n">3</span><b>Prepare a conversa</b><span>Monte um roteiro sob medida em 3 perguntas.</span></div>
             </div>
             <div class="mentor"><strong>Visão do Mentor</strong><p>Liderança se desenvolve na prática, conversa a conversa. Cada situação preparada com cuidado é uma oportunidade de fortalecer o time e a própria forma de liderar. Conte comigo para pensar junto sempre que precisar.</p></div>`,
-            [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('rotinas-pessoal'), chipsTema('desligamento'), chipsTema('saude-mental'), chipPreparar, chipMenu],
+            [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('indicadores'), chipsTema('gestao-rotina'), chipsTema('saude-mental'), chipPreparar, chipMenu],
             { chipsTitulo: 'Mais consultados' });
     }
 
