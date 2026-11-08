@@ -1,3 +1,5 @@
-# Link antigo do chatbot leva para o novo nome
-/chatbot-rhbp.html   /parceiro-do-lider   301
-/chatbot-rhbp        /parceiro-do-lider   301
+# Links antigos levam para o Eu Líder
+/chatbot-rhbp.html        /eu-lider   301
+/chatbot-rhbp             /eu-lider   301
+/parceiro-do-lider.html   /eu-lider   301
+/parceiro-do-lider        /eu-lider   301

@@ -1,9 +1,11 @@
 {
   "rewrites": [
-    { "source": "/parceiro-do-lider", "destination": "/parceiro-do-lider.html" }
+    { "source": "/eu-lider", "destination": "/eu-lider.html" }
   ],
   "redirects": [
-    { "source": "/chatbot-rhbp.html", "destination": "/parceiro-do-lider", "permanent": true },
-    { "source": "/chatbot-rhbp", "destination": "/parceiro-do-lider", "permanent": true }
+    { "source": "/chatbot-rhbp.html", "destination": "/eu-lider", "permanent": true },
+    { "source": "/chatbot-rhbp", "destination": "/eu-lider", "permanent": true },
+    { "source": "/parceiro-do-lider.html", "destination": "/eu-lider", "permanent": true },
+    { "source": "/parceiro-do-lider", "destination": "/eu-lider", "permanent": true }
   ]
 }
