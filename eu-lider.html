@@ -1563,7 +1563,7 @@
                 <div class="box"><h4>Para refletir</h4><ul class="marks refletir">${t.perguntas.map(p => `<li>${p}</li>`).join('')}</ul></div>
             </div>
             <div class="mentor"><strong>Visão do Mentor</strong><p>${t.mentor}</p></div>
-            <div class="nota-bp"><span>💬</span><span><strong>Antes de decidir, troque com seu BP de RH e com seu líder.</strong> Eles conhecem o contexto e as políticas da empresa e ajudam a adaptar esta orientação à sua realidade.</span></div>`;
+            <div class="nota-bp"><span>💬</span><span><strong>Troque sempre com seu BP de RH e sua liderança.</strong> Eles conhecem o contexto e as políticas da empresa e ajudam a adaptar esta orientação à sua realidade.</span></div>`;
 
         const chips = [chipPreparar, ...t.relacionados.filter(r => temaPorId(r)).map(chipsTema)];
         addBot(html, chips, { copiavel: true, chipsTitulo: 'Continue por aqui' });
@@ -1697,7 +1697,7 @@
                 <li>Em temas sensíveis, alinhe a abordagem antes com seu BP de RH e com seu líder.</li>
             </ul>
             <div class="mentor"><strong>Visão do Mentor</strong><p>O roteiro é um apoio para organizar as ideias. A conversa ganha força quando há espaço para ouvir: entre preparado e aberto ao que a pessoa vai trazer. Depois, registre os combinados e o que você aprendeu para as próximas conversas.</p></div>
-            <div class="nota-bp"><span>💬</span><span><strong>Antes de decidir, troque com seu BP de RH e com seu líder.</strong> Eles conhecem o contexto e as políticas da empresa e ajudam a adaptar esta orientação à sua realidade.</span></div>`;
+            <div class="nota-bp"><span>💬</span><span><strong>Troque sempre com seu BP de RH e sua liderança.</strong> Eles conhecem o contexto e as políticas da empresa e ajudam a adaptar esta orientação à sua realidade.</span></div>`;
 
         const chips = [{ label: 'Preparar outra conversa', acao: () => iniciarPreparo(), alt: true }];
         const rel = { corretivo: 'feedback', positivo: 'reconhecimento', performance: 'baixa-performance', conflito: 'conflito', carreira: 'pdi' }[preparo.tipo];
