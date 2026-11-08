@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parceiro do Líder - Chatbot RHBP</title>
-    <meta name="description" content="Chatbot de RH Business Partner para líderes: feedback, desempenho, desligamento, conflitos, retenção, saúde mental e mais. Orientações práticas, roteiros de conversa e reflexões de mentor.">
+    <title>Eu Líder · Apoio prático ao líder</title>
+    <meta name="description" content="Eu Líder: apoio prático para os temas de pessoas do dia a dia. Orientações, exemplos, roteiros de conversa e reflexões para líderes, sempre em parceria com o BP de RH e o líder imediato.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤝</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +61,17 @@
         }
         .brand-mark {
             width: 36px; height: 36px; border-radius: 10px;
-            background: rgba(255,255,255,.12); display: grid; place-items: center; font-size: 18px; flex-shrink: 0;
+            background: #fff; color: var(--navy); display: grid; place-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; flex-shrink: 0;
+        }
+        .parceria {
+            display: flex; gap: 12px; align-items: flex-start; margin-top: 18px;
+            background: var(--accent-soft); border: 1px solid #C7D2FE; border-radius: 10px; padding: 14px 16px; color: var(--ink);
+        }
+        .parceria .ic { font-size: 1.1rem; line-height: 1.4; }
+        .parceria p { margin: 0; font-size: .92rem; }
+        .nota-bp {
+            margin-top: 16px; font-size: .84rem; color: var(--ink-2); display: flex; gap: 8px; align-items: flex-start;
+            background: var(--surface-2); border: 1px dashed var(--line-2); border-radius: 8px; padding: 10px 12px;
         }
         .brand h1 { font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
         .brand p { font-size: .8rem; color: #B9C6DA; }
@@ -271,10 +281,10 @@
     <header class="topbar">
         <div class="topbar-inner">
             <button class="top-btn" id="btn-temas" aria-label="Abrir temas">☰</button>
-            <div class="brand-mark" aria-hidden="true">🤝</div>
+            <div class="brand-mark" aria-hidden="true">EL</div>
             <div class="brand">
-                <h1>Parceiro do Líder</h1>
-                <p>Orientação prática para as decisões e conversas sobre pessoas</p>
+                <h1>Eu Líder</h1>
+                <p>Apoio prático para os temas de pessoas do dia a dia</p>
             </div>
             <div class="top-actions">
                 <button class="top-btn" id="btn-inicio" title="Voltar ao início">⌂ <span class="label">Início</span></button>
@@ -301,7 +311,7 @@
                     <textarea id="input" rows="1" placeholder="Descreva a situação do seu time" aria-label="Mensagem"></textarea>
                     <button class="send-btn" id="send" type="submit" aria-label="Enviar">Enviar</button>
                 </form>
-                <p class="disclaimer">Apoio ao líder. Não substitui o RH, o jurídico nem os canais oficiais. Não inclua nomes ou dados pessoais de colaboradores.</p>
+                <p class="disclaimer">O Eu Líder apoia sua preparação. Para decisões, conte sempre com seu BP de RH e seu líder. Não substitui o jurídico nem os canais oficiais. Não inclua nomes ou dados pessoais.</p>
             </div>
         </main>
     </div>
@@ -1481,7 +1491,7 @@
 
         wrap.appendChild(b);
         chatInner.appendChild(wrap);
-        historico.push('Parceiro do Líder: ' + htmlParaTexto(html));
+        historico.push('Eu Líder: ' + htmlParaTexto(html));
         rolar();
     }
 
@@ -1552,7 +1562,8 @@
                 <div class="box"><h4>Evite</h4><ul class="marks evitar">${t.evitar.map(p => `<li>${p}</li>`).join('')}</ul></div>
                 <div class="box"><h4>Para refletir</h4><ul class="marks refletir">${t.perguntas.map(p => `<li>${p}</li>`).join('')}</ul></div>
             </div>
-            <div class="mentor"><strong>Visão do Mentor</strong><p>${t.mentor}</p></div>`;
+            <div class="mentor"><strong>Visão do Mentor</strong><p>${t.mentor}</p></div>
+            <div class="nota-bp"><span>💬</span><span><strong>Antes de decidir, troque com seu BP de RH e com seu líder.</strong> Eles conhecem o contexto e as políticas da empresa e ajudam a adaptar esta orientação à sua realidade.</span></div>`;
 
         const chips = [chipPreparar, ...t.relacionados.filter(r => temaPorId(r)).map(chipsTema)];
         addBot(html, chips, { copiavel: true, chipsTitulo: 'Continue por aqui' });
@@ -1582,15 +1593,16 @@
 
     function boasVindas() {
         marcarAtivo(null);
-        addBot(`<span class="eyebrow">Bem-vindo</span>
+        addBot(`<span class="eyebrow">Bem-vindo ao Eu Líder</span>
             <h3>Como posso apoiar sua liderança hoje?</h3>
-            <p class="lead">Orientações práticas, roteiros de conversa e reflexões para as situações de gente do dia a dia.</p>
+            <p class="lead">Um apoio prático para se preparar e refletir sobre os temas de pessoas do dia a dia, com orientações, exemplos e roteiros de conversa.</p>
             <div class="how">
                 <div><span class="n">1</span><b>Descreva</b><span>Conte a situação com suas palavras no campo abaixo.</span></div>
                 <div><span class="n">2</span><b>Escolha um tema</b><span>Navegue pelos temas organizados por assunto.</span></div>
                 <div><span class="n">3</span><b>Prepare a conversa</b><span>Monte um roteiro sob medida em 3 perguntas.</span></div>
             </div>
-            <div class="mentor"><strong>Visão do Mentor</strong><p>Liderança se desenvolve na prática, conversa a conversa. Cada situação preparada com cuidado é uma oportunidade de fortalecer o time e a própria forma de liderar. Conte comigo para pensar junto sempre que precisar.</p></div>`,
+            <div class="parceria"><span class="ic">🤝</span><p><strong>Use junto com quem caminha com você.</strong> O Eu Líder ajuda na preparação e na reflexão. Para decisões importantes e casos específicos, converse sempre com seu BP de RH e com seu líder: eles conhecem o contexto e as políticas da empresa e podem apoiar você na decisão.</p></div>
+            <div class="mentor"><strong>Visão do Mentor</strong><p>Liderança é uma escolha que se renova a cada conversa. Use este espaço para se preparar, organizar as ideias e refletir, e leve suas conclusões para a troca com seu BP e seu líder. Boas decisões costumam nascer de boas conversas.</p></div>`,
             [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('indicadores'), chipsTema('gestao-rotina'), chipsTema('saude-mental'), chipPreparar, chipMenu],
             { chipsTitulo: 'Mais consultados' });
     }
@@ -1682,8 +1694,10 @@
                 <li>Você está calmo? Se não, adie algumas horas.</li>
                 <li>Releia o fato: há algum julgamento ou adjetivo que dá para tirar?</li>
                 <li>Registre os combinados por escrito após a conversa.</li>
+                <li>Em temas sensíveis, alinhe a abordagem antes com seu BP de RH e com seu líder.</li>
             </ul>
-            <div class="mentor"><strong>Visão do Mentor</strong><p>O roteiro é um apoio para organizar as ideias. A conversa ganha força quando há espaço para ouvir: entre preparado e aberto ao que a pessoa vai trazer. Depois, registre os combinados e o que você aprendeu para as próximas conversas.</p></div>`;
+            <div class="mentor"><strong>Visão do Mentor</strong><p>O roteiro é um apoio para organizar as ideias. A conversa ganha força quando há espaço para ouvir: entre preparado e aberto ao que a pessoa vai trazer. Depois, registre os combinados e o que você aprendeu para as próximas conversas.</p></div>
+            <div class="nota-bp"><span>💬</span><span><strong>Antes de decidir, troque com seu BP de RH e com seu líder.</strong> Eles conhecem o contexto e as políticas da empresa e ajudam a adaptar esta orientação à sua realidade.</span></div>`;
 
         const chips = [{ label: 'Preparar outra conversa', acao: () => iniciarPreparo(), alt: true }];
         const rel = { corretivo: 'feedback', positivo: 'reconhecimento', performance: 'baixa-performance', conflito: 'conflito', carreira: 'pdi' }[preparo.tipo];
@@ -1702,7 +1716,7 @@
         if (/^ ?(menu|temas|ajuda|help|inicio|voltar) ?$/.test(norm)) return mostrarMenu();
         if (/^ ?(oi|ola|bom dia|boa tarde|boa noite|e ai|hey) ?$/.test(norm)) return boasVindas();
         if (/(obrigad|valeu|agradeco)/.test(norm) && norm.length < 30) {
-            return addBot('<p>Por nada! Conte comigo sempre que precisar. 💙</p>', [chipMenu]);
+            return addBot('<p>Por nada! Conte comigo sempre que precisar. E lembre de compartilhar seus próximos passos com seu BP de RH e com seu líder.</p>', [chipMenu]);
         }
         if (/(preparar|montar|roteiro).*(conversa|reuniao|feedback)/.test(norm)) return iniciarPreparo();
 
@@ -1770,11 +1784,11 @@
 
     document.getElementById('btn-export').onclick = () => {
         const data = new Date().toLocaleString('pt-BR');
-        const conteudo = `Parceiro do Líder - Conversa exportada em ${data}\n${'='.repeat(50)}\n\n` + historico.join('\n\n---\n\n');
+        const conteudo = `Eu Líder - Conversa exportada em ${data}\n${'='.repeat(50)}\n\n` + historico.join('\n\n---\n\n');
         const blob = new Blob([conteudo], { type: 'text/plain;charset=utf-8' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'conversa-parceiro-do-lider.txt';
+        a.download = 'conversa-eu-lider.txt';
         a.click();
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     };
