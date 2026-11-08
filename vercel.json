@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/parceiro-do-lider", "destination": "/parceiro-do-lider.html" }
+  ],
+  "redirects": [
+    { "source": "/chatbot-rhbp.html", "destination": "/parceiro-do-lider", "permanent": true },
+    { "source": "/chatbot-rhbp", "destination": "/parceiro-do-lider", "permanent": true }
+  ]
+}
