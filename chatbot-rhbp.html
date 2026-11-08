@@ -105,6 +105,10 @@
         }
         .tag { display: inline-block; font-size: .72rem; background: var(--light); color: var(--muted); padding: 2px 8px; border-radius: 10px; margin-bottom: 6px; }
 
+        .tag-movecta { background: #E1EEFF; color: #006EFF; font-weight: 600; }
+        .fonte { font-size: .75rem; color: var(--muted); margin-top: 10px !important; }
+        .chip.movecta { border-color: #006EFF; color: #006EFF; background: #F3F6FA; }
+        .chip.movecta:hover { background: #006EFF; color: #fff; }
         .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
         .chip {
             background: #fff; border: 1.5px solid var(--secondary); color: var(--secondary);
@@ -568,7 +572,7 @@
                 'Quem trabalha bem em silêncio e nunca é lembrado?'
             ],
             mentor: 'O reconhecimento é a ferramenta mais barata e mais subutilizada da liderança. Muitos líderes acham que reconhecer demais "acomoda". Na minha experiência, acontece o contrário: quem se sente visto oferece mais, não menos. O silêncio também é uma mensagem, e o que ele costuma dizer é "tanto faz".',
-            relacionados: ['engajamento', 'feedback']
+            relacionados: ['sinergy', 'engajamento', 'feedback']
         },
         {
             id: 'mudanca',
@@ -653,6 +657,223 @@
         }
     ];
 
+    // =========================================================
+    // TEMAS MOVECTA
+    // Fonte: Trilha Lidera Movecta 2026, Trilha 360° Movecta e
+    // material Rota Movecta (Regras pela Vida). Dados de premiação
+    // da Sinergy foram omitidos de propósito: consulte o RH.
+    // =========================================================
+    const COMPORTAMENTOS = [
+        ['Disciplina', 'Fazer o combinado, no padrão combinado, todas as vezes, não só quando alguém está olhando.'],
+        ['Excelência', 'Entregar com qualidade também nas tarefas pequenas. O padrão não varia com o tamanho da tarefa.'],
+        ['Empatia', 'Entender o contexto do outro antes de cobrar ou julgar, sem abrir mão do resultado.'],
+        ['Curiosidade', 'Perguntar "por quê" antes de aceitar "porque sempre foi assim". Buscar entender, não só executar.'],
+        ['Melhoria Contínua', 'Enxergar o processo de hoje como o pior que ele será. Sempre há uma versão melhor.'],
+        ['Protagonismo', 'Agir como dono do resultado da própria área, sem esperar ordem para resolver o que está ao seu alcance.']
+    ];
+
+    const REGRAS_VIDA = [
+        ['Aptidão', ''],
+        ['Espaço Confinado', ''],
+        ['Trabalho em Altura', 'Acima de 2 metros do chão, a atividade é trabalho em altura e exige proteção contra queda. Ex.: subir na carreta para soltar uma amarração.'],
+        ['Energia Zero', 'Equipamento só recebe intervenção com energia zero garantida: desligar e bloquear todas as fontes antes da manutenção.'],
+        ['Autorização', ''],
+        ['Interação Homem x Máquina', 'Pessoas e máquinas exigem rotas, sinalização e contato visual. Ex.: caminhar pelo pátio entre empilhadeiras em movimento.'],
+        ['Cargas Suspensas', 'Ninguém passa ou permanece sob carga suspensa. Ex.: cortar caminho por baixo de um contêiner içado pela reach stacker.'],
+        ['Risco Elétrico', ''],
+        ['Condução Segura', 'Na direção, atenção total à via. Ex.: mensagem no celular com o caminhão em movimento espera.'],
+        ['Comunicação', '']
+    ];
+
+    const TEMAS_MOVECTA = [
+        {
+            id: 'cultura',
+            emoji: '💙',
+            titulo: 'Cultura Movecta',
+            movecta: true,
+            tags: ['cultura', 'cultura movecta', 'nova cultura', 'valores', 'valor', 'superar resultados', 'cliente no centro', 'coragem para transformar', 'comportamentos', 'disciplina', 'excelencia', 'empatia', 'curiosidade', 'melhoria continua', 'protagonismo', 'embaixador da cultura', 'movecta', 'identidade'],
+            resumo: 'A Nova Cultura Movecta "move comportamento". Ela parte de 3 valores e se mostra em 6 comportamentos no dia a dia. O líder é quem mais convive com esses comportamentos no campo e quem tem o poder de cobrar e reconhecer.',
+            extra: `
+                <h4>Os 3 valores</h4>
+                <ul>
+                    <li><strong>Superar Resultados:</strong> ir além da meta combinada, buscar o resultado com intensidade, não só cumprir tabela.</li>
+                    <li><strong>Cliente no Centro:</strong> decidir e agir a partir do impacto real para quem depende da operação, interno ou externo.</li>
+                    <li><strong>Coragem para Transformar:</strong> questionar o modo como sempre foi feito e propor o que precisa mudar, mesmo sem certeza total.</li>
+                </ul>
+                <h4>Os 6 comportamentos</h4>
+                <ol>${COMPORTAMENTOS.map(c => `<li><strong>${c[0]}:</strong> ${c[1]}</li>`).join('')}</ol>`,
+            passos: [
+                'Traduza cada valor para uma decisão real da sua área: "como esse valor apareceria nessa decisão?".',
+                'Identifique quem do time vive cada comportamento com mais força, e por quê.',
+                'Cobre o comportamento esperado com o mesmo rigor que cobra o resultado.',
+                'Reconheça formalmente pela Sinergy: um elogio real e específico por semana é um bom começo.',
+                'Use o Embaixador da Cultura da sua diretoria como parceiro.'
+            ],
+            roteiro: '"Quero reconhecer o que você fez ontem: quando viu que o processo de conferência travava toda tarde, você propôs uma mudança sem esperar ninguém pedir. Isso é Protagonismo e Coragem para Transformar na prática. Vou registrar na Sinergy."',
+            evitar: [
+                'Tratar os valores como frase de mural, sem ligar a nenhuma decisão do dia a dia.',
+                'Tolerar comportamento contrário à cultura em quem entrega muito resultado.',
+                'Só falar de cultura em evento e treinamento.'
+            ],
+            perguntas: [
+                'Se minha equipe descrevesse "a Movecta" só pelo que vê de mim, o que diria?',
+                'Qual dos 6 comportamentos eu mesmo menos demonstro?'
+            ],
+            mentor: 'Cultura não é o texto emoldurado na recepção. É o que o supervisor tolera, cobra e celebra todos os dias, com a porta do galpão aberta e ninguém do RH olhando. Se os 6 comportamentos vivem no discurso da diretoria mas morrem no primeiro nível de supervisão, a cultura nunca chegou de verdade, só foi anunciada.',
+            fonte: 'Trilha Lidera Movecta 2026 e Trilha 360° Movecta (módulo Cultura Movecta e os Comportamentos).',
+            relacionados: ['sinergy', 'regras-vida', 'reconhecimento']
+        },
+        {
+            id: 'sinergy',
+            emoji: '⭐',
+            titulo: 'Reconhecimento Sinergy',
+            movecta: true,
+            tags: ['sinergy', 'synergy', 'sinergia', 'programa de reconhecimento', 'premiacao', 'premiar', 'premio', 'elogio na sinergy', 'registrar elogio', 'comite de reconhecimento', 'calibracao de reconhecimento'],
+            resumo: 'A Sinergy é o programa de reconhecimento da Movecta, baseado nos 6 comportamentos da cultura. Ela funciona em duas camadas: o elogio do dia a dia e a governança por diretoria.',
+            extra: `
+                <h4>Camada 1: Dia a dia</h4>
+                <ul>
+                    <li>Qualquer colaborador pode elogiar um colega com base nos 6 comportamentos.</li>
+                    <li>É aberto entre áreas e hierarquias diferentes.</li>
+                    <li>O colaborador e o líder imediato recebem notificação automática por e-mail.</li>
+                    <li>Quem mais recebe elogios em cada comportamento pode ser premiado.</li>
+                </ul>
+                <h4>Camada 2: Governança</h4>
+                <ul>
+                    <li>Rito mensal de calibração: os líderes de cada diretoria se reúnem com o Embaixador da Cultura da área.</li>
+                    <li>A quantidade e a qualidade dos elogios são insumo. A decisão final é do comitê, validada pelo Diretor.</li>
+                </ul>
+                <p><em>Valores, quantidade de premiados e limites de premiação: consulte o RH ou o Embaixador da Cultura da sua diretoria.</em></p>`,
+            passos: [
+                'Observe o comportamento, não só o resultado: qual dos 6 a pessoa demonstrou?',
+                'Registre o elogio na Sinergy no mesmo dia ou na mesma semana.',
+                'Seja específico: o que a pessoa fez, em que situação e qual foi o impacto.',
+                'Elogie também pessoas de outras áreas que apoiam seu time.',
+                'Leve casos fortes para o rito de calibração da sua diretoria.'
+            ],
+            roteiro: 'Exemplo de elogio na Sinergy:\n"Comportamento: Disciplina. Durante o pico de terça, mesmo com a fila de caminhões, manteve a conferência no padrão completo, sem pular etapa. Evitou divergência de carga com o cliente."',
+            evitar: [
+                'Elogios genéricos ("muito bom!") que não dizem qual comportamento foi visto.',
+                'Reconhecer sempre as mesmas pessoas ou só quem está mais perto de você.',
+                'Usar a Sinergy como troca de favores.'
+            ],
+            perguntas: [
+                'Quantos elogios registrei na Sinergy no último mês?',
+                'Quem do meu time vive a cultura todos os dias e nunca foi reconhecido?'
+            ],
+            mentor: 'O supervisor é quem primeiro enxerga quem vive a cultura no dia a dia. Quando ele não registra, a empresa simplesmente não fica sabendo. Reconhecer não é gentileza extra, é parte do trabalho de liderar: é você dizendo, em voz alta, que tipo de comportamento tem lugar aqui.',
+            fonte: 'Trilha Lidera Movecta 2026 (módulo 4: Reconhecimento Sinergy).',
+            relacionados: ['cultura', 'reconhecimento', 'engajamento']
+        },
+        {
+            id: 'regras-vida',
+            emoji: '🦺',
+            titulo: 'Regras pela Vida',
+            movecta: true,
+            tags: ['regras pela vida', 'regra pela vida', 'regras de ouro', 'seguranca', 'ssma', 'sst', 'acidente', 'quase acidente', 'quase-acidente', 'incidente', 'epi', 'trabalho em altura', 'espaco confinado', 'energia zero', 'bloqueio', 'cargas suspensas', 'carga suspensa', 'risco eletrico', 'conducao segura', 'empilhadeira', 'reach stacker', 'homem x maquina', 'aptidao', 'desvio de seguranca', 'inseguro'],
+            resumo: 'São 10 regras inegociáveis de segurança. Elas valem para todas as pessoas, em qualquer unidade, sem exceção de cargo nem de pressa. O líder é a primeira linha de prevenção.',
+            extra: `
+                <h4>As 10 regras</h4>
+                <ol>${REGRAS_VIDA.map(r => `<li><strong>${r[0]}</strong>${r[1] ? ': ' + r[1] : ''}</li>`).join('')}</ol>
+                <p><em>A descrição oficial de cada regra é do time de SSMA da unidade. Os exemplos acima vêm do material de integração Rota Movecta.</em></p>`,
+            passos: [
+                'Conheça a descrição oficial das 10 regras com o SSMA da sua unidade.',
+                'Viu um desvio? Interrompa na hora, com respeito. Segurança vem antes da produtividade.',
+                'Converse sobre o desvio com fatos: o que viu, qual regra e qual risco.',
+                'Registre quase-acidentes e desvios. Não esconda nem minimize.',
+                'Use casos reais (sem nomes) no DDS para manter o tema vivo.',
+                'Não normalize o "sempre foi assim". Quem cala diante do desvio está autorizando.'
+            ],
+            roteiro: '"Para, por favor. Você está passando por baixo da carga suspensa. Essa é uma das nossas Regras pela Vida, e eu não vou deixar ninguém do time correr esse risco. Vamos pelo caminho sinalizado. Depois conversamos sobre o que te levou a cortar caminho."',
+            evitar: [
+                'Fingir que não viu porque o turno está apertado.',
+                'Aplicar a regra só em dia de auditoria ou visita.',
+                'Punir quem reporta um quase-acidente. Isso ensina o time a esconder.',
+                'Abrir exceção por cargo, tempo de casa ou pressa do cliente.'
+            ],
+            perguntas: [
+                'Qual regra é mais desrespeitada na minha área, e por que eu ainda tolero isso?',
+                'Meu time se sente seguro para me parar quando eu cometo um desvio?'
+            ],
+            mentor: 'Regra que só vale quando o chefe está olhando não é regra, é teatro. Todo acidente grave tem, na origem, um pequeno desvio que alguém decidiu não ver. Segurança de verdade é decidida nos segundos em que ninguém vê, e o exemplo que o time copia é o seu.',
+            fonte: 'Rota Movecta (material interno SSMA · Regras pela Vida) e Trilha 360° Movecta (módulo SSMA).',
+            relacionados: ['cultura', 'feedback', 'juridico']
+        },
+        {
+            id: 'politicas',
+            emoji: '📘',
+            titulo: 'Políticas e rotinas de RH',
+            movecta: true,
+            tags: ['politica', 'politicas', 'politicas internas', 'norma', 'normas', 'procedimento', 'regra da empresa', 'regras da empresa', 'banco de horas', 'hora extra', 'horas extras', 'folha', 'folha de pagamento', 'ponto', 'prazo de folha', 'ciclo de pdi', 'admissao', 'canal integro', 'integro', 'canal de etica', 'departamento pessoal', 'dp'],
+            resumo: 'As rotinas de RH que o líder precisa dominar, e não terceirizar. O que o líder faz (ou deixa de fazer) aqui vira salário, direito ou processo trabalhista.',
+            extra: `
+                <h4>Rotinas críticas</h4>
+                <ul>
+                    <li><strong>Banco de horas e horas extras:</strong> controle, comunique e evite passivo trabalhista. Na dúvida sobre o que pode, consulte o DP antes.</li>
+                    <li><strong>Prazos de folha:</strong> o que enviar e quando. Um atraso pode virar o salário de alguém não caindo.</li>
+                    <li><strong>Ciclo de Feedback &amp; PDI:</strong> a conversa acontece antes do registro no sistema, e o PDI é acompanhado no dia a dia, não só na abertura do ciclo.</li>
+                    <li><strong>Admissão e desligamento:</strong> o líder tem papel em cada etapa. Conduza com clareza, respeito e alinhamento com o RH.</li>
+                    <li><strong>Canal de Ética (Canal Integro):</strong> relatos de conduta inadequada, assédio ou discriminação vão para o canal oficial e o RH. O líder não investiga sozinho.</li>
+                </ul>
+                <p><em>Regras detalhadas, limites e calendário mensal de DP: consulte o Departamento Pessoal ou o seu BP.</em></p>`,
+            passos: [
+                'Monte seu calendário mensal: o que você precisa enviar ao DP e até quando.',
+                'Acompanhe o banco de horas do time toda semana, não só no fechamento.',
+                'Antes de autorizar hora extra, pergunte: é necessária, está dentro da regra e foi planejada?',
+                'Faça a conversa de feedback antes de registrar o PDI no sistema.',
+                'Em qualquer dúvida legal (estabilidade, advertência, justa causa), fale com o BP antes de agir.'
+            ],
+            roteiro: '"Pessoal, a partir deste mês vamos olhar o banco de horas juntos toda sexta. Quero evitar que alguém acumule horas sem planejamento ou fique devendo sem perceber. Se precisarem compensar, me avisem com antecedência para eu organizar a escala."',
+            evitar: [
+                'Combinar compensação "de boca", fora da regra.',
+                'Mandar informação para a folha no último minuto.',
+                'Registrar PDI no sistema sem ter conversado com a pessoa.',
+                'Tratar rotina de DP como "problema do RH".'
+            ],
+            perguntas: [
+                'Eu sei hoje o saldo de banco de horas de cada pessoa do meu time?',
+                'Algum atraso meu já afetou o salário de alguém?'
+            ],
+            mentor: 'Banco de horas mal controlado, prazo de folha perdido e desligamento mal conduzido não são "problema do RH". São problema de quem está na ponta, porque é a ponta que gera o dado, o atraso ou o processo. Dominar essas rotinas não é burocracia: é o que separa o líder que reage do líder que antecipa.',
+            fonte: 'Trilha Lidera Movecta 2026 (módulo 3: Rotinas Críticas de RH) e Trilha 360° Movecta (módulo 12: Departamento Pessoal).',
+            relacionados: ['juridico', 'pdi', 'desligamento']
+        },
+        {
+            id: 'sustentabilidade',
+            emoji: '🌎',
+            titulo: 'Sustentabilidade',
+            movecta: true,
+            tags: ['sustentabilidade', 'sustentavel', 'relatorio de sustentabilidade', 'esg', 'asg', 'meio ambiente', 'ambiental', 'residuo', 'residuos', 'emissao', 'emissoes', 'carbono', 'descarbonizacao', 'social', 'governanca'],
+            resumo: 'O relatório de sustentabilidade da Movecta ainda não foi carregado no Parceiro do Líder. Por enquanto, este tema traz o que já está nos materiais internos e públicos.',
+            extra: `
+                <div class="alert"><p><strong>Conteúdo pendente:</strong> metas, indicadores e compromissos do relatório de sustentabilidade serão incluídos quando o documento oficial for compartilhado.</p></div>
+                <h4>O que já sabemos</h4>
+                <ul>
+                    <li><strong>Meio ambiente faz parte do SSMA:</strong> o líder precisa conhecer os riscos e as responsabilidades ambientais da operação e fiscalizá-los no dia a dia.</li>
+                    <li><strong>Frota:</strong> no Guarujá, os caminhões que ligam os terminais T1 e T2 têm telemetria e motor Euro 6 (fonte: imprensa).</li>
+                </ul>`,
+            passos: [
+                'Conheça os riscos ambientais específicos da sua unidade com o SSMA.',
+                'Use um checklist ambiental na rotina: resíduos, vazamentos, consumo de água e energia.',
+                'Trate desvio ambiental como desvio de segurança: interrompa, registre e corrija.',
+                'Conecte o tema ao cliente: muitos clientes cobram práticas sustentáveis dos fornecedores.'
+            ],
+            roteiro: '"Esse vazamento de água no pátio não é só custo. É desperdício de um recurso e pode virar um problema ambiental. Vamos registrar agora e acompanhar até resolver."',
+            evitar: [
+                'Achar que sustentabilidade é só assunto da diretoria ou do marketing.',
+                'Ignorar pequenos desperdícios porque "não fazem diferença".'
+            ],
+            perguntas: [
+                'Qual é o maior impacto ambiental da operação da minha área?',
+                'Meu time sabe o que fazer diante de um vazamento ou descarte errado?'
+            ],
+            mentor: 'Sustentabilidade que só existe no relatório anual é igual à qualidade que só aparece na auditoria: é teatro. O que conta é o que acontece no pátio numa terça-feira qualquer, quando ninguém está medindo. O líder que cuida do pequeno desperdício está ensinando o time a cuidar do que é de todos.',
+            fonte: 'Trilha 360° Movecta (módulo SSMA, Meio ambiente na operação) e MundoLogística (frota da unidade Guarujá). Relatório de sustentabilidade: pendente.',
+            relacionados: ['regras-vida', 'cultura', 'politicas']
+        }
+    ];
+    TEMAS.push(...TEMAS_MOVECTA);
+
     // Temas sensíveis: exigem encaminhamento, não orientação passo a passo.
     const SENSIVEIS = [
         {
@@ -684,7 +905,7 @@
                 <span class="tag">⚠️ Tema sensível</span>
                 <h3>Relato de assédio, discriminação ou violência</h3>
                 <div class="alert">
-                    <p>Esse tipo de situação <strong>não deve ser investigado nem resolvido sozinho pelo líder</strong>. Acione o <strong>RHBP</strong> e/ou o <strong>canal de ética/compliance</strong> da empresa o quanto antes.</p>
+                    <p>Esse tipo de situação <strong>não deve ser investigado nem resolvido sozinho pelo líder</strong>. Acione o <strong>RHBP</strong> e/ou o <strong>Canal de Ética (Canal Integro)</strong> o quanto antes.</p>
                 </div>
                 <h4>O que fazer agora</h4>
                 <ul>
@@ -700,7 +921,7 @@
         {
             id: 'juridico',
             prioridade: 1,
-            tags: ['justa causa', 'processo trabalhista', 'advertencia', 'suspensao', 'gravida', 'gravidez', 'gestante', 'estabilidade', 'acidente de trabalho', 'cipa', 'clt', 'hora extra', 'horas extras', 'banco de horas', 'jornada', 'ferias', 'sindicato', 'advogado'],
+            tags: ['justa causa', 'processo trabalhista', 'advertencia', 'suspensao', 'gravida', 'gravidez', 'gestante', 'estabilidade', 'acidente de trabalho', 'cipa', 'clt', 'sindicato', 'advogado'],
             render: () => `
                 <span class="tag">⚖️ Tema com risco legal</span>
                 <h3>Esse assunto precisa do RHBP (e talvez do jurídico)</h3>
@@ -800,7 +1021,7 @@
             c.className = 'chips';
             chips.forEach(ch => {
                 const el = document.createElement('button');
-                el.className = 'chip' + (ch.alt ? ' alt' : '');
+                el.className = 'chip' + (ch.alt ? ' alt' : '') + (ch.movecta ? ' movecta' : '');
                 el.textContent = ch.label;
                 el.onclick = () => { addUser(ch.label); responderComDelay(() => ch.acao()); };
                 c.appendChild(el);
@@ -840,7 +1061,8 @@
     // =========================================================
     // RESPOSTAS
     // =========================================================
-    function chipsTema(id) { return { label: temaPorId(id).emoji + ' ' + temaPorId(id).titulo, acao: () => mostrarTema(id) }; }
+    function chipsTema(id) { const t = temaPorId(id); return { label: t.emoji + ' ' + t.titulo, acao: () => mostrarTema(id), movecta: !!t.movecta }; }
+    const chipMovecta = { label: '🏢 Temas Movecta', acao: () => mostrarMovecta(), movecta: true };
 
     const chipMenu = { label: '☰ Ver todos os temas', acao: () => mostrarMenu(), alt: true };
     const chipPreparar = { label: '🛠️ Preparar uma conversa', acao: () => iniciarPreparo(), alt: true };
@@ -852,10 +1074,11 @@
         if (t.render) { addBot(t.render(), [chipPreparar, chipMenu], { copiavel: true }); return; }
 
         const html = `
-            <span class="tag">${t.emoji} ${t.titulo}</span>
+            <span class="tag${t.movecta ? ' tag-movecta' : ''}">${t.movecta ? 'Movecta · ' : ''}${t.emoji} ${t.titulo}</span>
             <h3>${t.titulo}</h3>
             <p>${t.resumo}</p>
-            <h4>Passo a passo</h4>
+            ${t.extra || ''}
+            <h4>${t.movecta ? 'Na prática' : 'Passo a passo'}</h4>
             <ol>${t.passos.map(p => `<li>${p}</li>`).join('')}</ol>
             <h4>Como falar</h4>
             <div class="script">${t.roteiro}</div>
@@ -863,7 +1086,8 @@
             <ul>${t.evitar.map(p => `<li>${p}</li>`).join('')}</ul>
             <h4>Perguntas para você refletir</h4>
             <ul>${t.perguntas.map(p => `<li>${p}</li>`).join('')}</ul>
-            <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>${t.mentor}</p></div>`;
+            <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>${t.mentor}</p></div>
+            ${t.fonte ? `<p class="fonte">📎 Fonte: ${t.fonte}</p>` : ''}`;
 
         const chips = [chipPreparar, ...t.relacionados.map(chipsTema), chipMenu];
         addBot(html, chips, { copiavel: true });
@@ -872,7 +1096,15 @@
     function mostrarMenu() {
         preparo = null;
         addBot('<p>Escolha um tema ou descreva a situação com suas palavras:</p>',
-            [...TEMAS.map(t => chipsTema(t.id)), chipPreparar]);
+            [...TEMAS.filter(t => !t.movecta).map(t => chipsTema(t.id)), chipMovecta, chipPreparar]);
+    }
+
+    function mostrarMovecta() {
+        preparo = null;
+        addBot(`<span class="tag tag-movecta">Movecta</span>
+            <h3>Temas da Movecta</h3>
+            <p>Cultura, reconhecimento, segurança, rotinas de RH e sustentabilidade, a partir dos materiais internos da Movecta.</p>`,
+            [...TEMAS.filter(t => t.movecta).map(t => chipsTema(t.id)), chipMenu]);
     }
 
     function naoEntendi() {
@@ -886,7 +1118,7 @@
             <p>Sou o <strong>Parceiro do Líder</strong>, um apoio de RH Business Partner para as situações de gente do seu dia a dia.</p>
             <p>Me conte o que está acontecendo, escolha um tema ou use <strong>Preparar uma conversa</strong> para montar um roteiro sob medida.</p>
             <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>Liderar é, no fundo, ter as conversas que os outros evitam. Não espere estar pronto. Ninguém fica. Prepare-se o suficiente e vá.</p></div>`,
-            [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('desligamento'), chipsTema('conflito'), chipsTema('saude-mental'), chipPreparar, chipMenu]);
+            [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('desligamento'), chipsTema('conflito'), chipsTema('saude-mental'), chipMovecta, chipPreparar, chipMenu]);
     }
 
     // =========================================================
@@ -986,6 +1218,7 @@
             return addBot('<p>Por nada! Conte comigo sempre que precisar. 💙</p>', [chipMenu]);
         }
         if (/(preparar|montar|roteiro).*(conversa|reuniao|feedback)/.test(norm)) return iniciarPreparo();
+        if (/^ ?(temas )?movecta ?$/.test(norm)) return mostrarMovecta();
 
         // Temas sensíveis primeiro (por prioridade)
         const sens = SENSIVEIS
