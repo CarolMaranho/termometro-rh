@@ -6,173 +6,301 @@
     <title>Parceiro do Líder - Chatbot RHBP</title>
     <meta name="description" content="Chatbot de RH Business Partner para líderes: feedback, desempenho, desligamento, conflitos, retenção, saúde mental e mais. Orientações práticas, roteiros de conversa e reflexões de mentor.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤝</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --light: #ecf0f1;
-            --bg: #f5f7fa;
-            --card: #ffffff;
-            --text: #333;
-            --muted: #6b7785;
-            --border: #e1e6ec;
-            --bot-bubble: #ffffff;
-            --user-bubble: #3498db;
-            --mentor-bg: #fdf6ec;
-            --mentor-border: #e67e22;
-            --alert-bg: #fdecea;
+            color-scheme: light;
+            --ink: #0F172A;
+            --ink-2: #334155;
+            --muted: #64748B;
+            --line: #E2E8F0;
+            --line-2: #CBD5E1;
+            --bg: #F5F7FA;
+            --surface: #FFFFFF;
+            --surface-2: #F8FAFC;
+            --navy: #0B2545;
+            --accent: #1D4ED8;
+            --accent-soft: #EEF2FF;
+            --accent-ink: #1E3A8A;
+            --gold: #B7791F;
+            --gold-soft: #FFF8EB;
+            --danger: #B42318;
+            --danger-soft: #FEF3F2;
+            --ok: #067647;
+            --radius: 12px;
+            --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 4px 16px -8px rgba(15, 23, 42, .10);
+            --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { height: 100%; }
-
         body {
+            font-family: var(--font);
             background: var(--bg);
-            color: var(--text);
-            line-height: 1.55;
+            color: var(--ink-2);
+            line-height: 1.6;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
             display: flex;
             flex-direction: column;
         }
+        button { font: inherit; cursor: pointer; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        /* ---------- Cabeçalho ---------- */
+        .topbar {
+            background: var(--navy);
             color: #fff;
-            padding: 14px 16px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.12);
-            position: relative;
             flex-shrink: 0;
         }
-        header::before {
-            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, #3498db, #f1c40f, #e67e22, #e74c3c);
+        .topbar-inner {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 20px;
         }
-        .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
-        .avatar { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.18); display: grid; place-items: center; font-size: 24px; flex-shrink: 0; }
-        .header-text h1 { font-size: 1.15rem; line-height: 1.2; }
-        .header-text p { font-size: .85rem; opacity: .9; }
-        .header-actions { margin-left: auto; display: flex; gap: 6px; }
-        .icon-btn {
-            background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3);
-            border-radius: 8px; padding: 6px 10px; font-size: .8rem; cursor: pointer; white-space: nowrap;
+        .brand-mark {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: rgba(255,255,255,.12); display: grid; place-items: center; font-size: 18px; flex-shrink: 0;
         }
-        .icon-btn:hover { background: rgba(255,255,255,.28); }
-        .icon-btn.link { text-decoration: none; display: inline-flex; align-items: center; }
-
-        main { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
-
-        #chat {
-            flex: 1; overflow-y: auto; padding: 18px 16px 8px;
-            scroll-behavior: smooth;
+        .brand h1 { font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
+        .brand p { font-size: .8rem; color: #B9C6DA; }
+        .top-actions { margin-left: auto; display: flex; gap: 6px; }
+        .top-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: transparent; color: #E2E8F0; border: 1px solid rgba(255,255,255,.22);
+            border-radius: 8px; padding: 7px 12px; font-size: .82rem; font-weight: 500; text-decoration: none; white-space: nowrap;
         }
-        .chat-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .top-btn:hover { background: rgba(255,255,255,.08); }
+        #btn-temas { display: none; }
 
-        .msg { display: flex; gap: 8px; align-items: flex-end; animation: pop .2s ease-out; }
+        /* ---------- Layout ---------- */
+        .app {
+            flex: 1; min-height: 0;
+            display: grid; grid-template-columns: 290px minmax(0, 1fr);
+            width: 100%;
+        }
+
+        /* ---------- Barra lateral ---------- */
+        .sidebar {
+            border-right: 1px solid var(--line);
+            background: var(--surface);
+            overflow-y: auto;
+            padding: 20px 14px 24px;
+        }
+        .btn-primary {
+            width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--accent); color: #fff; border: none; border-radius: 10px;
+            padding: 11px 14px; font-weight: 600; font-size: .9rem;
+        }
+        .btn-primary:hover { background: #1E40AF; }
+        .side-hint { font-size: .75rem; color: var(--muted); margin: 8px 4px 18px; }
+        .cat { margin-bottom: 16px; }
+        .cat-title {
+            font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--muted); padding: 0 8px 6px;
+        }
+        .cat-list { list-style: none; }
+        .cat-list button {
+            width: 100%; text-align: left; background: none; border: none; border-radius: 8px;
+            padding: 7px 8px; color: var(--ink-2); font-size: .88rem; display: flex; gap: 10px; align-items: center;
+        }
+        .cat-list button:hover { background: var(--surface-2); color: var(--ink); }
+        .cat-list button.ativo { background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
+        .cat-list .ico { width: 20px; text-align: center; flex-shrink: 0; }
+
+        /* ---------- Coluna do chat ---------- */
+        .main { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+        #chat { flex: 1; overflow-y: auto; padding: 24px 20px 12px; scroll-behavior: smooth; }
+        .chat-inner { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+        .msg { display: flex; animation: entrar .2s ease-out; }
         .msg.user { justify-content: flex-end; }
-        .msg .bubble {
-            max-width: min(720px, 88%);
-            padding: 12px 14px; border-radius: 14px;
-            box-shadow: 0 1px 4px rgba(0,0,0,.06);
-            overflow-wrap: anywhere;
+        .msg.user .bubble {
+            background: var(--navy); color: #fff; border-radius: 14px 14px 4px 14px;
+            padding: 10px 14px; max-width: 80%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .92rem;
         }
-        .msg.bot .bubble { background: var(--bot-bubble); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
-        .msg.user .bubble { background: var(--user-bubble); color: #fff; border-bottom-right-radius: 4px; white-space: pre-wrap; }
-        .msg.bot .mini-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); color: #fff; display: grid; place-items: center; font-size: 15px; flex-shrink: 0; }
-
-        @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
-        .bubble h3 { font-size: 1.02rem; color: var(--primary); margin-bottom: 6px; }
-        .bubble h4 { font-size: .9rem; color: var(--secondary); margin: 12px 0 4px; text-transform: uppercase; letter-spacing: .03em; }
-        .bubble p { margin: 4px 0; }
-        .bubble ul, .bubble ol { padding-left: 20px; margin: 4px 0; }
-        .bubble li { margin: 3px 0; }
-        .script {
-            background: #f0f6fc; border-left: 4px solid var(--secondary);
-            padding: 10px 12px; border-radius: 6px; margin: 4px 0; font-style: italic; white-space: pre-line;
+        .msg.bot .bubble {
+            width: 100%; background: var(--surface); border: 1px solid var(--line);
+            border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 24px; overflow-wrap: anywhere;
         }
-        .mentor {
-            background: var(--mentor-bg); border-left: 4px solid var(--mentor-border);
-            padding: 10px 12px; border-radius: 6px; margin-top: 12px;
-        }
-        .mentor strong { color: #b35c00; display: block; margin-bottom: 4px; font-style: normal; }
-        .mentor p { font-style: italic; }
-        .alert {
-            background: var(--alert-bg); border-left: 4px solid var(--danger);
-            padding: 10px 12px; border-radius: 6px; margin: 6px 0;
-        }
-        .tag { display: inline-block; font-size: .72rem; background: var(--light); color: var(--muted); padding: 2px 8px; border-radius: 10px; margin-bottom: 6px; }
+        @keyframes entrar { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
-        .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-        .chip {
-            background: #fff; border: 1.5px solid var(--secondary); color: var(--secondary);
-            border-radius: 18px; padding: 6px 12px; font-size: .85rem; cursor: pointer; font-weight: 500;
-            transition: all .15s;
-        }
-        .chip:hover { background: var(--secondary); color: #fff; }
-        .chip.alt { border-color: var(--mentor-border); color: #b35c00; }
-        .chip.alt:hover { background: var(--mentor-border); color: #fff; }
-
-        .bubble-actions { display: flex; gap: 8px; margin-top: 10px; }
-        .small-btn { background: none; border: none; color: var(--muted); font-size: .78rem; cursor: pointer; padding: 2px 0; }
-        .small-btn:hover { color: var(--secondary); text-decoration: underline; }
-
-        .typing span { display: inline-block; width: 7px; height: 7px; margin: 0 2px; background: var(--muted); border-radius: 50%; animation: blink 1.2s infinite; }
+        .typing { display: inline-flex !important; width: auto !important; gap: 4px; padding: 14px 18px !important; }
+        .typing span { width: 6px; height: 6px; background: var(--line-2); border-radius: 50%; animation: piscar 1.2s infinite; }
         .typing span:nth-child(2) { animation-delay: .2s; }
         .typing span:nth-child(3) { animation-delay: .4s; }
-        @keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+        @keyframes piscar { 0%, 80%, 100% { opacity: .3; } 40% { opacity: 1; } }
 
-        .composer { flex-shrink: 0; background: var(--card); border-top: 1px solid var(--border); padding: 10px 16px; }
-        .composer form { max-width: 900px; margin: 0 auto; display: flex; gap: 8px; }
+        /* ---------- Conteúdo das respostas ---------- */
+        .bubble h3 { font-size: 1.25rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; line-height: 1.3; margin-bottom: 6px; }
+        .bubble h4 {
+            font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--muted); margin: 22px 0 10px;
+        }
+        .bubble p { margin: 6px 0; }
+        .bubble ul, .bubble ol { padding-left: 20px; margin: 6px 0; }
+        .bubble li { margin: 5px 0; }
+        .bubble strong { color: var(--ink); font-weight: 600; }
+        .bubble a { color: var(--accent); }
+
+        .tag, .eyebrow {
+            display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+            color: var(--accent-ink); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; margin-bottom: 10px;
+        }
+        .lead { font-size: 1rem; color: var(--ink-2); }
+
+        /* Passo a passo numerado */
+        .steps { list-style: none; padding: 0 !important; counter-reset: passo; }
+        .steps li {
+            counter-increment: passo; position: relative; padding: 8px 0 8px 40px; margin: 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .steps li:last-child { border-bottom: none; }
+        .steps li::before {
+            content: counter(passo); position: absolute; left: 0; top: 8px;
+            width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink);
+            font-weight: 700; font-size: .78rem; display: grid; place-items: center;
+        }
+
+        /* Bloco de fala */
+        .script {
+            background: var(--surface-2); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+            padding: 12px 16px; border-radius: 8px; color: var(--ink); white-space: pre-line; font-size: .95rem;
+        }
+
+        /* Evite e reflexão lado a lado */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+        .box { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--surface); }
+        .box h4 { margin-top: 0; }
+        .marks { list-style: none; padding: 0 !important; }
+        .marks li { position: relative; padding-left: 22px; font-size: .9rem; }
+        .marks li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+        .marks.evitar li::before { content: '✕'; color: var(--danger); }
+        .marks.refletir li::before { content: '?'; color: var(--accent); }
+
+        /* Visão do Mentor */
+        .mentor {
+            margin-top: 22px; background: var(--gold-soft); border: 1px solid #F3E2C2; border-left: 3px solid var(--gold);
+            border-radius: 10px; padding: 14px 18px;
+        }
+        .mentor strong { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+        .mentor p { color: var(--ink); margin: 0; }
+
+        .alert {
+            background: var(--danger-soft); border: 1px solid #FECDCA; border-left: 3px solid var(--danger);
+            padding: 12px 16px; border-radius: 10px; margin: 10px 0; color: var(--ink);
+        }
+
+        /* Ações e atalhos */
+        .bubble-actions { display: flex; gap: 8px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+        .small-btn {
+            background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); border-radius: 8px;
+            padding: 6px 12px; font-size: .8rem; font-weight: 500;
+        }
+        .small-btn:hover { border-color: var(--line-2); color: var(--ink); }
+        .chips-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip {
+            background: var(--surface); border: 1px solid var(--line-2); color: var(--ink-2);
+            border-radius: 999px; padding: 6px 14px; font-size: .84rem; font-weight: 500; transition: all .15s;
+        }
+        .chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+        .chip.alt { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .chip.alt:hover { background: #1E40AF; color: #fff; }
+
+        /* Boas-vindas e menu */
+        .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 4px; }
+        .how div { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+        .how b { display: block; color: var(--ink); font-size: .9rem; margin-bottom: 2px; }
+        .how span { font-size: .82rem; color: var(--muted); }
+        .how .n { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: #fff; font-size: .72rem; font-weight: 700; margin-bottom: 6px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px; }
+        .menu-cat { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+        .menu-cat h4 { margin: 0 0 6px; }
+        .menu-cat button {
+            display: block; width: 100%; text-align: left; background: none; border: none; color: var(--ink-2);
+            padding: 5px 0; font-size: .88rem;
+        }
+        .menu-cat button:hover { color: var(--accent); }
+
+        /* ---------- Campo de mensagem ---------- */
+        .composer { flex-shrink: 0; background: var(--surface); border-top: 1px solid var(--line); padding: 12px 20px 10px; }
+        .composer form { max-width: 780px; margin: 0 auto; display: flex; gap: 8px; }
         .composer textarea {
-            flex: 1; resize: none; border: 1.5px solid var(--border); border-radius: 12px;
-            padding: 10px 12px; font-size: 1rem; max-height: 140px; min-height: 44px; outline: none;
+            flex: 1; resize: none; border: 1px solid var(--line-2); border-radius: 10px; font: inherit; font-size: .95rem;
+            padding: 11px 14px; max-height: 140px; min-height: 46px; outline: none; color: var(--ink); background: var(--surface);
         }
-        .composer textarea:focus { border-color: var(--secondary); }
-        .send-btn {
-            background: linear-gradient(to right, var(--secondary), #2980b9); color: #fff; border: none;
-            border-radius: 12px; padding: 0 18px; font-weight: 600; cursor: pointer; font-size: 1rem;
-        }
+        .composer textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+        .send-btn { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 0 20px; font-weight: 600; }
+        .send-btn:hover { background: #1E40AF; }
         .send-btn:disabled { opacity: .5; cursor: default; }
-        .disclaimer { max-width: 900px; margin: 6px auto 0; font-size: .72rem; color: var(--muted); text-align: center; }
+        .disclaimer { max-width: 780px; margin: 8px auto 0; font-size: .72rem; color: var(--muted); text-align: center; }
 
-        @media (max-width: 600px) {
-            .header-text p { display: none; }
-            .icon-btn .label { display: none; }
-            .msg .bubble { max-width: 92%; }
+        .overlay { display: none; }
+
+        /* ---------- Celular e tablet ---------- */
+        @media (max-width: 900px) {
+            .app { grid-template-columns: minmax(0, 1fr); }
+            #btn-temas { display: inline-flex; }
+            .sidebar {
+                position: fixed; top: 0; bottom: 0; left: 0; width: min(310px, 86vw); z-index: 30;
+                transform: translateX(-100%); transition: transform .25s ease; box-shadow: 0 0 40px rgba(15,23,42,.2);
+            }
+            body.menu-aberto .sidebar { transform: none; }
+            body.menu-aberto .overlay { display: block; position: fixed; inset: 0; background: rgba(15,23,42,.35); z-index: 20; }
         }
+        @media (max-width: 600px) {
+            .topbar-inner { padding: 10px 16px; }
+            .brand p, .top-btn .label, .brand-mark { display: none; }
+            .brand h1 { font-size: 1rem; white-space: nowrap; }
+            .top-btn { padding: 7px 10px; }
+            #chat { padding: 16px 16px 8px; }
+            .msg.bot .bubble { padding: 18px 16px; }
+            .grid-2, .how, .menu-grid { grid-template-columns: 1fr; }
+            .composer { padding: 10px 16px 8px; }
+        }
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-inner">
-            <div class="avatar">🤝</div>
-            <div class="header-text">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <button class="top-btn" id="btn-temas" aria-label="Abrir temas">☰</button>
+            <div class="brand-mark" aria-hidden="true">🤝</div>
+            <div class="brand">
                 <h1>Parceiro do Líder</h1>
-                <p>Seu RHBP de bolso para conversas e decisões sobre pessoas</p>
+                <p>Orientação prática para as decisões e conversas sobre pessoas</p>
             </div>
-            <div class="header-actions">
-                <button class="icon-btn" id="btn-menu" title="Ver temas">☰ <span class="label">Temas</span></button>
-                <button class="icon-btn" id="btn-export" title="Baixar conversa">⬇ <span class="label">Baixar</span></button>
-                <a class="icon-btn link" href="index.html.html" title="Voltar ao Termômetro do RH">🌡️ <span class="label">Termômetro</span></a>
+            <div class="top-actions">
+                <button class="top-btn" id="btn-inicio" title="Voltar ao início">⌂ <span class="label">Início</span></button>
+                <button class="top-btn" id="btn-export" title="Baixar conversa">⬇ <span class="label">Baixar conversa</span></button>
+                <a class="top-btn" href="index.html.html" title="Ir para o Termômetro do RH">🌡️ <span class="label">Termômetro</span></a>
             </div>
         </div>
     </header>
 
-    <main>
-        <div id="chat" aria-live="polite">
-            <div class="chat-inner" id="chat-inner"></div>
-        </div>
-        <div class="composer">
-            <form id="form">
-                <textarea id="input" rows="1" placeholder="Conte a situação. Ex.: 'preciso dar um feedback difícil'" aria-label="Mensagem"></textarea>
-                <button class="send-btn" id="send" type="submit" aria-label="Enviar">➤</button>
-            </form>
-            <p class="disclaimer">Orientação de apoio ao líder. Não substitui o RH, o jurídico nem canais oficiais. Não inclua nomes ou dados pessoais dos colaboradores.</p>
-        </div>
-    </main>
+    <div class="app">
+        <aside class="sidebar" id="sidebar" aria-label="Temas">
+            <button class="btn-primary" id="btn-preparar">🛠️ Preparar uma conversa</button>
+            <p class="side-hint">Monte um roteiro sob medida em 3 perguntas.</p>
+            <nav id="nav-temas"></nav>
+        </aside>
+        <div class="overlay" id="overlay"></div>
+
+        <main class="main">
+            <div id="chat" aria-live="polite">
+                <div class="chat-inner" id="chat-inner"></div>
+            </div>
+            <div class="composer">
+                <form id="form">
+                    <textarea id="input" rows="1" placeholder="Descreva a situação do seu time" aria-label="Mensagem"></textarea>
+                    <button class="send-btn" id="send" type="submit" aria-label="Enviar">Enviar</button>
+                </form>
+                <p class="disclaimer">Apoio ao líder. Não substitui o RH, o jurídico nem os canais oficiais. Não inclua nomes ou dados pessoais de colaboradores.</p>
+            </div>
+        </main>
+    </div>
 
     <script>
     // =========================================================
@@ -847,7 +975,7 @@
                     <li>Acione o RHBP e a saúde ocupacional imediatamente, com discrição.</li>
                     <li>Cuide de você também depois: essa conversa pesa.</li>
                 </ul>
-                <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>Nesses momentos, a prioridade é a segurança da pessoa. Não é esperado que o líder tenha todas as respostas: estar presente, escutar e acionar ajuda especializada já é uma contribuição decisiva.</p></div>`
+                <div class="mentor"><strong>Visão do Mentor</strong><p>Nesses momentos, a prioridade é a segurança da pessoa. Não é esperado que o líder tenha todas as respostas: estar presente, escutar e acionar ajuda especializada já é uma contribuição decisiva.</p></div>`
         },
         {
             id: 'assedio',
@@ -868,7 +996,7 @@
                     <li>Proteja quem relatou contra qualquer retaliação.</li>
                     <li>Se houver risco à integridade física, acione segurança e, se necessário, a polícia (190).</li>
                 </ul>
-                <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>A forma como um relato é recebido mostra ao time que é seguro falar. Acolher com seriedade, proteger quem relatou e acionar os canais oficiais é a contribuição mais importante do líder nesse momento.</p></div>`
+                <div class="mentor"><strong>Visão do Mentor</strong><p>A forma como um relato é recebido mostra ao time que é seguro falar. Acolher com seriedade, proteger quem relatou e acionar os canais oficiais é a contribuição mais importante do líder nesse momento.</p></div>`
         },
         {
             id: 'juridico',
@@ -885,7 +1013,7 @@
                     <li>Leve ao RHBP para análise da política e da legislação aplicável.</li>
                     <li>Medidas disciplinares precisam ser proporcionais, imediatas e consistentes com casos anteriores.</li>
                 </ul>
-                <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>Contar com o RH e o jurídico nesses casos é uma prática de boa gestão: protege a empresa, o colaborador e o próprio líder, e garante decisões mais seguras e consistentes.</p></div>`
+                <div class="mentor"><strong>Visão do Mentor</strong><p>Contar com o RH e o jurídico nesses casos é uma prática de boa gestão: protege a empresa, o colaborador e o próprio líder, e garante decisões mais seguras e consistentes.</p></div>`
         }
     ];
 
@@ -949,26 +1077,20 @@
         rolar();
     }
 
-    function addBot(html, chips = [], { copiavel = false } = {}) {
+    function addBot(html, chips = [], { copiavel = false, chipsTitulo = '' } = {}) {
         const wrap = document.createElement('div');
         wrap.className = 'msg bot';
-        wrap.innerHTML = '<div class="mini-avatar">🤝</div>';
         const b = document.createElement('div');
         b.className = 'bubble';
         b.innerHTML = html;
 
-        if (copiavel) {
-            const acts = document.createElement('div');
-            acts.className = 'bubble-actions';
-            const btn = document.createElement('button');
-            btn.className = 'small-btn';
-            btn.textContent = '📋 Copiar orientação';
-            btn.onclick = () => copiar(htmlParaTexto(html), btn);
-            acts.appendChild(btn);
-            b.appendChild(acts);
-        }
-
         if (chips.length) {
+            if (chipsTitulo) {
+                const l = document.createElement('div');
+                l.className = 'chips-label';
+                l.textContent = chipsTitulo;
+                b.appendChild(l);
+            }
             const c = document.createElement('div');
             c.className = 'chips';
             chips.forEach(ch => {
@@ -981,6 +1103,17 @@
             b.appendChild(c);
         }
 
+        if (copiavel) {
+            const acts = document.createElement('div');
+            acts.className = 'bubble-actions';
+            const btn = document.createElement('button');
+            btn.className = 'small-btn';
+            btn.textContent = 'Copiar orientação';
+            btn.onclick = () => copiar(htmlParaTexto(html), btn);
+            acts.appendChild(btn);
+            b.appendChild(acts);
+        }
+
         wrap.appendChild(b);
         chatInner.appendChild(wrap);
         historico.push('Parceiro do Líder: ' + htmlParaTexto(html));
@@ -991,10 +1124,10 @@
         sendBtn.disabled = true;
         const wrap = document.createElement('div');
         wrap.className = 'msg bot';
-        wrap.innerHTML = '<div class="mini-avatar">🤝</div><div class="bubble typing"><span></span><span></span><span></span></div>';
+        wrap.innerHTML = '<div class="bubble typing" aria-label="Digitando"><span></span><span></span><span></span></div>';
         chatInner.appendChild(wrap);
         rolar();
-        setTimeout(() => { wrap.remove(); sendBtn.disabled = false; fn(); }, 550);
+        setTimeout(() => { wrap.remove(); sendBtn.disabled = false; fn(); }, 450);
     }
 
     function copiar(texto, btn) {
@@ -1013,54 +1146,99 @@
     // =========================================================
     // RESPOSTAS
     // =========================================================
-    function chipsTema(id) { return { label: temaPorId(id).emoji + ' ' + temaPorId(id).titulo, acao: () => mostrarTema(id) }; }
+    const CATEGORIAS = [
+        { titulo: 'Conversas e feedback', temas: ['feedback', 'one-on-one', 'conflito', 'mudanca', 'desligamento'] },
+        { titulo: 'Desempenho e desenvolvimento', temas: ['baixa-performance', 'avaliacao', 'pdi', 'sucessao', 'reconhecimento'] },
+        { titulo: 'Time e bem-estar', temas: ['engajamento', 'retencao', 'saude-mental', 'diversidade'] },
+        { titulo: 'Gestão e rotinas', temas: ['rotinas-pessoal', 'custos', 'delegacao', 'remuneracao', 'ia'] },
+        { titulo: 'Contratação e integração', temas: ['contratacao', 'onboarding'] }
+    ];
+    const categoriaDe = id => CATEGORIAS.find(c => c.temas.includes(id));
 
-    const chipMenu = { label: '☰ Ver todos os temas', acao: () => mostrarMenu(), alt: true };
+    function chipsTema(id) { const t = temaPorId(id); return { label: t.emoji + ' ' + t.titulo, acao: () => mostrarTema(id) }; }
+
+    const chipMenu = { label: 'Ver todos os temas', acao: () => mostrarMenu() };
     const chipPreparar = { label: '🛠️ Preparar uma conversa', acao: () => iniciarPreparo(), alt: true };
+
+    function marcarAtivo(id) {
+        document.querySelectorAll('.cat-list button').forEach(b => b.classList.toggle('ativo', b.dataset.tema === id));
+    }
 
     function mostrarTema(id) {
         preparo = null;
         const t = temaPorId(id);
         if (!t) return naoEntendi();
+        marcarAtivo(id);
         if (t.render) { addBot(t.render(), [chipPreparar, chipMenu], { copiavel: true }); return; }
 
+        const cat = categoriaDe(id);
         const html = `
-            <span class="tag">${t.emoji} ${t.titulo}</span>
-            <h3>${t.titulo}</h3>
-            <p>${t.resumo}</p>
+            ${cat ? `<span class="eyebrow">${cat.titulo}</span>` : ''}
+            <h3>${t.emoji} ${t.titulo}</h3>
+            <p class="lead">${t.resumo}</p>
             ${t.extra || ''}
             <h4>Passo a passo</h4>
-            <ol>${t.passos.map(p => `<li>${p}</li>`).join('')}</ol>
+            <ol class="steps">${t.passos.map(p => `<li>${p}</li>`).join('')}</ol>
             <h4>Como falar</h4>
             <div class="script">${t.roteiro}</div>
-            <h4>Evite</h4>
-            <ul>${t.evitar.map(p => `<li>${p}</li>`).join('')}</ul>
-            <h4>Perguntas para você refletir</h4>
-            <ul>${t.perguntas.map(p => `<li>${p}</li>`).join('')}</ul>
-            <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>${t.mentor}</p></div>`;
+            <div class="grid-2">
+                <div class="box"><h4>Evite</h4><ul class="marks evitar">${t.evitar.map(p => `<li>${p}</li>`).join('')}</ul></div>
+                <div class="box"><h4>Para refletir</h4><ul class="marks refletir">${t.perguntas.map(p => `<li>${p}</li>`).join('')}</ul></div>
+            </div>
+            <div class="mentor"><strong>Visão do Mentor</strong><p>${t.mentor}</p></div>`;
 
-        const chips = [chipPreparar, ...t.relacionados.map(chipsTema), chipMenu];
-        addBot(html, chips, { copiavel: true });
+        const chips = [chipPreparar, ...t.relacionados.filter(r => temaPorId(r)).map(chipsTema)];
+        addBot(html, chips, { copiavel: true, chipsTitulo: 'Continue por aqui' });
+    }
+
+    function menuHtml() {
+        return `<div class="menu-grid">${CATEGORIAS.map(c => `
+            <div class="menu-cat"><h4>${c.titulo}</h4>
+                ${c.temas.map(id => { const t = temaPorId(id); return `<button data-tema="${id}">${t.emoji} ${t.titulo}</button>`; }).join('')}
+            </div>`).join('')}</div>`;
     }
 
     function mostrarMenu() {
         preparo = null;
-        addBot('<p>Escolha um tema ou descreva a situação com suas palavras:</p>',
-            [...TEMAS.map(t => chipsTema(t.id)), chipPreparar]);
+        addBot(`<span class="eyebrow">Temas</span>
+            <h3>Escolha um tema</h3>
+            <p class="lead">Ou descreva a situação com suas palavras no campo abaixo.</p>
+            ${menuHtml()}`, [chipPreparar]);
     }
 
     function naoEntendi() {
-        addBot(`<p>Não tenho certeza de qual tema se encaixa melhor. Pode me contar com outras palavras?</p>
-            <p>Exemplos: <em>"tenho um colaborador que vive atrasando entregas"</em>, <em>"preciso desligar alguém"</em>, <em>"meu time está desmotivado"</em>.</p>`,
+        addBot(`<h3>Vamos encontrar o tema certo</h3>
+            <p>Não identifiquei o assunto com segurança. Pode contar com outras palavras?</p>
+            <p>Exemplos: <em>"tenho um colaborador que vive atrasando entregas"</em>, <em>"preciso planejar as férias do time"</em>, <em>"meu time está desmotivado"</em>.</p>`,
             [chipMenu, chipPreparar]);
     }
 
     function boasVindas() {
-        addBot(`<h3>Olá, líder! 👋</h3>
-            <p>Sou o <strong>Parceiro do Líder</strong>, um apoio de RH Business Partner para as situações de gente do seu dia a dia.</p>
-            <p>Me conte o que está acontecendo, escolha um tema ou use <strong>Preparar uma conversa</strong> para montar um roteiro sob medida.</p>
-            <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>Liderança se desenvolve na prática, conversa a conversa. Cada situação preparada com cuidado é uma oportunidade de fortalecer o time e a própria forma de liderar. Conte comigo para pensar junto sempre que precisar.</p></div>`,
-            [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('desligamento'), chipsTema('conflito'), chipsTema('saude-mental'), chipPreparar, chipMenu]);
+        marcarAtivo(null);
+        addBot(`<span class="eyebrow">Bem-vindo</span>
+            <h3>Como posso apoiar sua liderança hoje?</h3>
+            <p class="lead">Orientações práticas, roteiros de conversa e reflexões para as situações de gente do dia a dia.</p>
+            <div class="how">
+                <div><span class="n">1</span><b>Descreva</b><span>Conte a situação com suas palavras no campo abaixo.</span></div>
+                <div><span class="n">2</span><b>Escolha um tema</b><span>Navegue pelos temas organizados por assunto.</span></div>
+                <div><span class="n">3</span><b>Prepare a conversa</b><span>Monte um roteiro sob medida em 3 perguntas.</span></div>
+            </div>
+            <div class="mentor"><strong>Visão do Mentor</strong><p>Liderança se desenvolve na prática, conversa a conversa. Cada situação preparada com cuidado é uma oportunidade de fortalecer o time e a própria forma de liderar. Conte comigo para pensar junto sempre que precisar.</p></div>`,
+            [chipsTema('feedback'), chipsTema('baixa-performance'), chipsTema('rotinas-pessoal'), chipsTema('desligamento'), chipsTema('saude-mental'), chipPreparar, chipMenu],
+            { chipsTitulo: 'Mais consultados' });
+    }
+
+    function montarSidebar() {
+        document.getElementById('nav-temas').innerHTML = CATEGORIAS.map(c => `
+            <div class="cat"><div class="cat-title">${c.titulo}</div>
+                <ul class="cat-list">${c.temas.map(id => { const t = temaPorId(id); return `<li><button data-tema="${id}"><span class="ico">${t.emoji}</span>${t.titulo}</button></li>`; }).join('')}</ul>
+            </div>`).join('');
+    }
+
+    function abrirTema(id) {
+        document.body.classList.remove('menu-aberto');
+        addUser(temaPorId(id).titulo);
+        responderComDelay(() => mostrarTema(id));
     }
 
     // =========================================================
@@ -1079,7 +1257,7 @@
 
     function iniciarPreparo() {
         preparo = { etapa: 'tipo' };
-        addBot('<h3>🛠️ Vamos preparar sua conversa</h3><p>São 3 perguntas rápidas. <strong>Não use nomes nem dados pessoais.</strong></p><p>Qual é o tipo de conversa?</p>',
+        addBot('<span class="eyebrow">Preparar uma conversa</span><h3>Vamos montar seu roteiro</h3><p>São 3 perguntas rápidas. <strong>Não use nomes nem dados pessoais.</strong></p><p>Qual é o tipo de conversa?</p>',
             Object.entries(TIPOS_CONVERSA).map(([k, v]) => ({ label: v.label, acao: () => preparoTipo(k) })));
     }
 
@@ -1115,7 +1293,7 @@
         const positivo = preparo.tipo === 'positivo';
 
         const html = `
-            <span class="tag">🛠️ Roteiro: ${tipo.label}</span>
+            <span class="eyebrow">Roteiro · ${tipo.label}</span>
             <h3>Seu roteiro de conversa</h3>
             <h4>1. Abertura</h4>
             <div class="script">"${tipo.abertura}"</div>
@@ -1138,9 +1316,9 @@
                 <li>Releia o fato: há algum julgamento ou adjetivo que dá para tirar?</li>
                 <li>Registre os combinados por escrito após a conversa.</li>
             </ul>
-            <div class="mentor"><strong>🧭 Visão do Mentor</strong><p>O roteiro é um apoio para organizar as ideias. A conversa ganha força quando há espaço para ouvir: entre preparado e aberto ao que a pessoa vai trazer. Depois, registre os combinados e o que você aprendeu para as próximas conversas.</p></div>`;
+            <div class="mentor"><strong>Visão do Mentor</strong><p>O roteiro é um apoio para organizar as ideias. A conversa ganha força quando há espaço para ouvir: entre preparado e aberto ao que a pessoa vai trazer. Depois, registre os combinados e o que você aprendeu para as próximas conversas.</p></div>`;
 
-        const chips = [{ label: '🔁 Preparar outra conversa', acao: () => iniciarPreparo(), alt: true }];
+        const chips = [{ label: 'Preparar outra conversa', acao: () => iniciarPreparo(), alt: true }];
         const rel = { corretivo: 'feedback', positivo: 'reconhecimento', performance: 'baixa-performance', conflito: 'conflito', carreira: 'pdi' }[preparo.tipo];
         if (rel) chips.push(chipsTema(rel));
         chips.push(chipMenu);
@@ -1211,7 +1389,17 @@
     function autoResize() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 140) + 'px'; }
     input.addEventListener('input', autoResize);
 
-    document.getElementById('btn-menu').onclick = () => { addUser('Ver temas'); responderComDelay(mostrarMenu); };
+    document.addEventListener('click', e => {
+        const b = e.target.closest('[data-tema]');
+        if (b) abrirTema(b.dataset.tema);
+    });
+    document.getElementById('btn-temas').onclick = () => document.body.classList.toggle('menu-aberto');
+    document.getElementById('overlay').onclick = () => document.body.classList.remove('menu-aberto');
+    document.getElementById('btn-preparar').onclick = () => {
+        document.body.classList.remove('menu-aberto');
+        addUser('Preparar uma conversa'); responderComDelay(iniciarPreparo);
+    };
+    document.getElementById('btn-inicio').onclick = () => { chatInner.innerHTML = ''; historico.length = 0; preparo = null; boasVindas(); };
 
     document.getElementById('btn-export').onclick = () => {
         const data = new Date().toLocaleString('pt-BR');
@@ -1224,6 +1412,7 @@
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     };
 
+    montarSidebar();
     boasVindas();
     </script>
 </body>
