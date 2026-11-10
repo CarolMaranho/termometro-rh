@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/", "destination": "/eu-lider.html" },
     { "source": "/eu-lider", "destination": "/eu-lider.html" }
   ],
   "redirects": [
