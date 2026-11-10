@@ -1447,6 +1447,12 @@
     }
 
     function rolar() { chatBox.scrollTop = chatBox.scrollHeight; }
+    // Leva o início de uma resposta para o topo da área de conversa,
+    // para o líder começar a leitura pelo título do tema.
+    function rolarParaInicio(el) {
+        const topo = el.getBoundingClientRect().top - chatBox.getBoundingClientRect().top + chatBox.scrollTop - 12;
+        chatBox.scrollTo({ top: Math.max(0, topo), behavior: 'smooth' });
+    }
 
     function pontuar(textoNorm, tags) {
         let score = 0;
@@ -1479,7 +1485,7 @@
         rolar();
     }
 
-    function addBot(html, chips = [], { copiavel = false, chipsTitulo = '' } = {}) {
+    function addBot(html, chips = [], { copiavel = false, chipsTitulo = '', rolagem = 'inicio' } = {}) {
         const wrap = document.createElement('div');
         wrap.className = 'msg bot';
         const b = document.createElement('div');
@@ -1519,7 +1525,7 @@
         wrap.appendChild(b);
         chatInner.appendChild(wrap);
         historico.push('Eu Líder: ' + htmlParaTexto(html));
-        rolar();
+        if (rolagem === 'inicio') rolarParaInicio(wrap);
     }
 
     function responderComDelay(fn) {
@@ -1770,7 +1776,7 @@
         // Se outro tema também pontuou bem, sugere
         const outros = ranking.slice(1, 3).filter(x => x.score >= ranking[0].score - 1);
         if (outros.length) {
-            setTimeout(() => addBot('<p>Sua situação também pode envolver:</p>', outros.map(x => chipsTema(x.t.id))), 300);
+            setTimeout(() => addBot('<p>Sua situação também pode envolver:</p>', outros.map(x => chipsTema(x.t.id)), { rolagem: 'nenhuma' }), 300);
         }
     }
 
